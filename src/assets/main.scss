@@ -1,6 +1,283 @@
 @import 'reset'; 
 @import 'root'; 
 
-@media screen and (max-width: 900px){
+
+* {
+    box-sizing: border-box;
+  }
+/* style */
+body {
+    font-family: Arial, sans-serif;
+    cursor: url('@/assets/images/cursor.svg') 3 3, auto;
+}
+
+.pointer{
+    cursor: url('@/assets/images/cursor-hover.svg') 3 3, auto;
+}
+#app{
+    width:100%;
+}
+h1, h2, h3, h4, h5, h6 {
+    font-family: 'Dosis', sans-serif;
+    font-weight: 700;
+    color: #333;
+}
+h1 {
+    font-size: 70px;
+    line-height: 1.2;
+}
+h2 {
+    font-size: 40px;
+    font-weight: 700;
+}
+
+.texte--white{
+    color: $main-color_blanc;
+}
+.text--white{
+    color: $main-color_gris;
+}
+
+
+
+
+.ctaclose{
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 30px;
+    height: 30px;
+    background: url(/src/assets/images/close.svg) no-repeat center center;
+    background-size: calc(100% - 10px);
+    padding: 20px;
+  }
+  .ctaclose:hover{
+    opacity:0.8;
+    }
+
+
+
+
+#app {
+    width: 100%;
+    max-width: 2000px; /* Limite la largeur à 2000px maximum */
+    margin: 0 auto; /* Centre le contenu si l'écran est plus large */
+    padding: 20px; /* Ajoute du padding pour respirer autour du contenu */
+    box-sizing: border-box; /* Assure que le padding et les bordures sont inclus dans la largeur */
+  }
   
+  .grid-container {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr); /* 4 colonnes égales */
+    grid-template-rows: repeat(6, auto);
+    gap: 20px;
+    padding: 20px;
+    max-width: 100%; /* Ne pas dépasser la largeur du conteneur parent */
+    box-sizing: border-box;
+  }
+
+/*cta*/
+.cta--container{
+    position: relative;
+    width: fit-content;
+    margin: auto;
+    z-index: 5;
+    text-decoration: none;
+}
+.cta{
+    display: block;
+    background-color: #7447b6;
+    text-decoration: none;
+    border-radius: 25px;
+    font-size: 25px;
+    font-weight: 700;
+    width: fit-content;
+    
+    padding: 15px 50px;
+    align-content: center;
+    justify-content: center;
+    color: $main-color_blanc;
+    position: relative;
+    border: solid 5px #000000;
+    top:0px;
+    left:0px;
+    transition: 0.3s;
+}
+.cta--violet{
+    background-color: $main-color_violet;
+}
+.cta--jaune{
+    background-color: $main-color_jaune;
+    color: $main-color_gris;
+}
+.cta::before{
+    content: '';
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    right: -10px;
+    bottom: -10px;
+    border-radius: 25px;
+    background: #010101;
+    z-index: -1;
+    transition: 0.3s;
+}
+.cta:hover{
+    top:5px;
+    left:7px;
+}
+.cta--violet:hover{
+    background-color: $main-color_violet_fonce;
+    animation: animhoverviolet 0.8s infinite;
+}
+.cta--jaune:hover{
+    background-color: $main-color_jaune_fonce;
+    animation: animhoverjaune 0.8s infinite;
+}
+.cta:hover::before{
+    top:0px;
+    bottom: -5px;
+    left:0px;
+    right: -5px;
+}
+@keyframes animhoverjaune{
+    0%{
+        background-color: $main-color_jaune;
+    }
+    50%{
+        background-color: $main-color_jaune_fonce;
+    }
+    100%{
+        background-color: $main-color_jaune;
+    }
+}
+@keyframes animhoverviolet{
+    0%{
+        background-color: $main-color_violet;
+    }
+    50%{
+        background-color: $main-color_violet_fonce;
+    }
+    100%{
+        background-color: $main-color_violet;
+    }
+}
+
+
+/*body */
+body{
+    font-family: 'Dosis', sans-serif;
+    animation: changercouleurfond 20s infinite linear;
+
+    
+    margin: 0;
+    height: 100vh;
+    background-image: 
+        linear-gradient(90deg, rgba(0, 0, 0, .1) 2px, transparent 1px),
+        linear-gradient(rgba(0, 0, 0, .1) 2px, transparent 1px);
+    background-size: 100px 100px; /* Taille de chaque carré du quadrillage */
+    animation: scroll-grid 3s linear infinite, changercouleurfond 20s infinite linear; /* Animation pour défiler le quadrillage */
+}
+@keyframes scroll-grid {
+    0% {
+      background-position: 0 0;
+    }
+    100% {
+      background-position: 200px 100px; /* Déplacement vers le bas et à droite */
+    }
+  }
+.part-bloc{
+    border-radius: 20px;
+    outline: 3px solid $main-color_noir;
+    transition: 0.5s;
+}
+.part-bloc--violet{
+    background-color: $main-color_violet;
+}
+.part-bloc--jaune{
+    background-color: $main-color_jaune;
+}
+.part-bloc:hover{
+    outline: 5px solid $main-color_gris;
+}
+.part-bloc--violet:hover{
+    background-color: $main-color_violet_fonce;
+}
+.part-bloc--jaune:hover{
+    background-color: $main-color_jaune_fonce;
+}
+
+
+
+
+
+@keyframes changercouleurfond {
+    0% {background-color: #b57e35;}
+    25% {background-color: #b57e35;}
+    50% {background-color: #472a72;}
+    75% {background-color: #472a72;}
+    100% {background-color: #b57e35;}
+}
+
+.part-bloc{
+    transform: scale(0);
+}
+
+
+
+@keyframes bubbleEffect {
+    0% {
+      opacity: 0;
+      transform: scale(0);
+    }
+    50% {
+      opacity: 1;
+      transform: scale(1.1);
+    }
+    100% {
+      transform: scale(1);
+  }
+}
+
+
+
+
+
+#app{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: calc(100vh - 50px);
+    padding-top: 50px;
+}
+
+
+
+
+
+html{
+    overflow-x: hidden;
+    width: 100vw;
+}
+
+
+@media screen and (max-width:  1650px){
+    #app, body {
+        width:100%;
+        padding: 0px;
+        
+    }
+    h2 span{
+        font-size:25px;
+    }
+    .cta{
+        padding: 10px 30px;
+    }
+}
+        
+
+
+        
+@media screen and (max-width: 900px){
+
 }

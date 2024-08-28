@@ -1,11 +1,12 @@
 import { createRouter, createWebHistory } from 'vue-router';
 import Home from '../components/Home.vue';
 import Portfolio from '../components/Portfolio.vue';
+import Quisommesnous from '../components/Quisommesnous.vue';
 
 const routes = [
   {
     path: '/',
-    name: 'home',
+    name: 'Home',
     component: Home,
     meta: {
       title: 'TooKek',
@@ -23,10 +24,28 @@ const routes = [
   },
   {
     path: '/portfolio',
-    name: 'portfolio',
+    name: 'Portfolio',
     component: Portfolio,
     meta: {
       title: 'TooKek - Portfolio',
+      metaTags: [
+        {
+          name: 'description',
+          content: 'Découvrez nos projets réalisés.'
+        },
+        {
+          property: 'og:description',
+          content: 'Découvrez notre portfolio et les projets que nous avons réalisés pour nos clients.'
+        }
+      ]
+    }
+  },
+  {
+    path: '/quisommesnous',
+    name: 'Quisommesnous',
+    component: Quisommesnous,
+    meta: {
+      title: 'TooKek - qui sommes-nous',
       metaTags: [
         {
           name: 'description',
