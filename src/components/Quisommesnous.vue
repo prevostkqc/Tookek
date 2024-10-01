@@ -180,6 +180,7 @@ export default {
 
     .part-bloc{
         aspect-ratio: 1/1;
+        overflow: hidden;
     }
     
     .part-bloc--kek{
@@ -297,11 +298,11 @@ export default {
     }
 
     .h2--nom {
-    display: inline-block;
-    font-size: 2.5rem;
-    cursor: pointer;
-    transition: transform 0.3s ease;
-    white-space: nowrap;
+        display: inline-block;
+        font-size: 2.5rem;
+        cursor: pointer;
+        transition: transform 0.3s ease;
+        white-space: nowrap;
     }
 
     .part-bloc:hover .wave-letter {

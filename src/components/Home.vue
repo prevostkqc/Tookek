@@ -3,7 +3,7 @@
 
 
     <div class="item1  item  part-bloc  part-bloc--violet  part-bloc--1">
-        <h1 class="texte--white">Pour un projet qui claque !</h1>
+        <h1 class="texte--white">Pour un projet qui claque&nbsp;!</h1>
         <div class="cta--container pointer">
             <a class="cta cta--personnage cta--jaune"  href="mailto:contact@tookek.fr?subject=Contact depuis tookek.fr&body=Nom Pr&eacute;nom : %0D%0ACompagnie (facultatif) : %0D%0A%0D%0ADescription du projet : %0D%0A%0D%0A%0D%0A%0D%0A">
                 Je me lance
@@ -273,7 +273,7 @@
 
 
     <div class="item6  item   part-bloc  part-bloc--violet  part-bloc--1">
-      <img :src="logotookek" class="logo--tookek" alt="TooKek">
+      <img :src="logotookek" class="logo--tookek" alt="TooKek" @click="openTookekPopup">
     </div>
 
 
@@ -281,10 +281,15 @@
       © 2024 - Tookek - Agence web - tous droits réservés
     </div>
   </div>
+  
+  <div v-if="showTookekPopup" class="popup">
+    <Tookek @close="closeTookekPopup" />
+  </div>
 </template>
 
 <script>
-import Quisommesnous from "@/components/Quisommesnous.vue";
+import Quisommesnous  from "@/components/Quisommesnous.vue";
+import Tookek         from "@/components/Tookek.vue";
 
 import image1 from '@/assets/images/preview-projets/opale.png';
 import image2 from '@/assets/images/preview-projets/piment72.png';
@@ -296,6 +301,7 @@ export default {
   name: "Home",
   components: {
     Quisommesnous,
+    Tookek,
   },
   data() {
     return {
@@ -318,6 +324,7 @@ export default {
       keklunettes,
       logotookek,
       slideInterval: null,
+      showTookekPopup: false, // Add this line
     };
   },
   computed: {
@@ -345,6 +352,12 @@ export default {
         this.isTransitioning = false; // Retire la transition pour un changement sans animation
         this.currentSlide = 0; // Revient à la première slide
       }
+    },
+    openTookekPopup() {
+      this.showTookekPopup = true;
+    },
+    closeTookekPopup() {
+      this.showTookekPopup = false;
     },
   },
   beforeDestroy() {
@@ -472,6 +485,7 @@ export default {
   color: white;
   padding: 10px;
   font-size: 18px;
+  font-size: 1.8rem;
   border-radius: 100px;
   height: 110px;
   width: 110px;

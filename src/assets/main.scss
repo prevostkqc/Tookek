@@ -7,27 +7,31 @@
   }
 /* style */
 body {
-    font-family: Arial, sans-serif;
+    font-family: Rubik, Arial, sans-serif;
     cursor: url('@/assets/images/cursor.svg') 3 3, auto;
 }
 
-.pointer{
-    cursor: url('@/assets/images/cursor-hover.svg') 3 3, auto;
+.pointer, a{
+    cursor: url('@/assets/images/cursor-hover.svg') 3 3, auto !important;
 }
 #app{
     width:100%;
 }
 h1, h2, h3, h4, h5, h6 {
-    font-family: 'Dosis', sans-serif;
+    font-family: Rubik, 'Dosis', sans-serif;
     font-weight: 700;
     color: #333;
+    font-size: 2.5rem;
 }
 h1 {
-    font-size: 70px;
+    font-size: 82px;
+    font-size: 4rem;
     line-height: 1.2;
+    font-weight: 700;
 }
 h2 {
     font-size: 40px;
+    font-size: 2rem;
     font-weight: 700;
 }
 
@@ -37,14 +41,17 @@ h2 {
 .text--white{
     color: $main-color_gris;
 }
+.bold{
+    font-weight: 700;
+}
 
 
 
 
 .ctaclose{
     position: absolute;
-    top: 0;
-    right: 0;
+    top: 10px;
+    left: 10px;
     width: 30px;
     height: 30px;
     background: url(/src/assets/images/close.svg) no-repeat center center;
@@ -90,6 +97,7 @@ h2 {
     text-decoration: none;
     border-radius: 25px;
     font-size: 25px;
+    font-size: 1.5rem;
     font-weight: 700;
     width: fit-content;
     
@@ -166,7 +174,7 @@ h2 {
 
 /*body */
 body{
-    font-family: 'Dosis', sans-serif;
+    font-family: Rubik, 'Dosis', sans-serif;
     animation: changercouleurfond 20s infinite linear;
 
     
@@ -269,6 +277,7 @@ html{
     }
     h2 span{
         font-size:25px;
+        font-size: 2rem;
     }
     .cta{
         padding: 10px 30px;
