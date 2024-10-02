@@ -5,9 +5,11 @@
     <div class="item1  item  part-bloc  part-bloc--violet  part-bloc--1">
         <h1 class="texte--white">Pour un projet qui claque&nbsp;!</h1>
         <div class="cta--container pointer">
-            <a class="cta cta--personnage cta--jaune"  href="mailto:contact@tookek.fr?subject=Contact depuis tookek.fr&body=Nom Pr&eacute;nom : %0D%0ACompagnie (facultatif) : %0D%0A%0D%0ADescription du projet : %0D%0A%0D%0A%0D%0A%0D%0A">
+
+          
+            <div class="cta cta--personnage cta--jaune"  @click="openContactPopup" href="mailto:contact@tookek.fr?subject=Contact depuis tookek.fr&body=Nom Pr&eacute;nom : %0D%0ACompagnie (facultatif) : %0D%0A%0D%0ADescription du projet : %0D%0A%0D%0A%0D%0A%0D%0A">
                 Je me lance
-            </a>
+            </div>
         </div>
     </div>
 
@@ -40,7 +42,9 @@
     <div class="item4  item  part-bloc  part-bloc--violet  part-bloc--1">
       
       <div class="container-lunettes-portfolio">
-        <img :src="keklunettes" class="lunette-protfolio-img" alt="Lunettes Kek">
+        <img :src="flecheArray[currentFlecheIndex]" class="fleche-portfolio fleche-portfolio--1" alt="Flêche">
+        <img :src="flecheArray[currentFlecheIndex]" class="fleche-portfolio fleche-portfolio--2" alt="Flêche">
+        <img :src="keklunettes" class="lunette-protfolio-img" alt="Lunettes">
       </div>
         <a class="cta--container pointer" href="mailto:contact@tookek.fr?subject=Contact depuis tookek.fr&body=Nom Pr&eacute;nom : %0D%0ACompagnie (facultatif) : %0D%0A%0D%0ADescription du projet : %0D%0A%0D%0A%0D%0A%0D%0A">
             <div class="cta cta--personnage cta--jaune">
@@ -278,22 +282,50 @@
 
 
     <div class="item7  item    part-bloc  part-bloc--jaune   part-bloc--2">
-      © 2024 - Tookek - Agence web - tous droits réservés
+      © <span>{{ currentYear }}</span> - Tookek - Agence web - tous droits réservés
     </div>
   </div>
   
   <div v-if="showTookekPopup" class="popup">
     <Tookek @close="closeTookekPopup" />
   </div>
+  <div v-if="showContactPopup" class="popup">
+    <Contact @close="closeContactPopup" />
+  </div>
 </template>
 
 <script>
 import Quisommesnous  from "@/components/Quisommesnous.vue";
 import Tookek         from "@/components/Tookek.vue";
+import Contact        from "@/components/Contact.vue";
 
+// Import des images directement avec des importations ES6
 import image1 from '@/assets/images/preview-projets/opale.png';
 import image2 from '@/assets/images/preview-projets/piment72.png';
 import image3 from '@/assets/images/preview-projets/opale.png';
+
+// Import des flèches
+import fleche1  from '@/assets/images/fleches/fleche-01.svg';
+import fleche2  from '@/assets/images/fleches/fleche-02.svg';
+import fleche3  from '@/assets/images/fleches/fleche-03.svg';
+import fleche4  from '@/assets/images/fleches/fleche-04.svg';
+import fleche5  from '@/assets/images/fleches/fleche-05.svg';
+import fleche6  from '@/assets/images/fleches/fleche-06.svg';
+import fleche7  from '@/assets/images/fleches/fleche-07.svg';
+import fleche8  from '@/assets/images/fleches/fleche-08.svg';
+import fleche9  from '@/assets/images/fleches/fleche-09.svg';
+import fleche10 from '@/assets/images/fleches/fleche-10.svg';
+import fleche11 from '@/assets/images/fleches/fleche-11.svg';
+import fleche12 from '@/assets/images/fleches/fleche-12.svg';
+import fleche13 from '@/assets/images/fleches/fleche-13.svg';
+import fleche14 from '@/assets/images/fleches/fleche-14.svg';
+import fleche15 from '@/assets/images/fleches/fleche-15.svg';
+import fleche16 from '@/assets/images/fleches/fleche-16.svg';
+import fleche17 from '@/assets/images/fleches/fleche-17.svg';
+import fleche18 from '@/assets/images/fleches/fleche-18.svg';
+import fleche19 from '@/assets/images/fleches/fleche-19.svg';
+
+// Import des autres images
 import keklunettes from '@/assets/images/kek/lunettes.svg';
 import logotookek from '@/assets/images/tookeklogo.svg';
 
@@ -302,6 +334,7 @@ export default {
   components: {
     Quisommesnous,
     Tookek,
+    Contact,
   },
   data() {
     return {
@@ -321,50 +354,94 @@ export default {
           title: "Titre 3",
         },
       ],
-      keklunettes,
-      logotookek,
+      currentFlecheIndex: 0,
+      flecheArray: [
+        fleche1,
+        fleche2,
+        fleche3,
+        fleche4,
+        fleche5,
+        fleche6,
+        fleche7,
+        fleche8,
+        fleche9,
+        fleche10,
+        fleche11,
+        fleche12,
+        fleche13,
+        fleche14,
+        fleche15,
+        fleche16,
+        fleche17,
+        fleche18,
+        fleche19,
+      ],
+      keklunettes: keklunettes,
+      logotookek: logotookek,
       slideInterval: null,
-      showTookekPopup: false, // Add this line
+      showTookekPopup: false,
+      showContactPopup: false,
+      currentYear: new Date().getFullYear(),
     };
   },
   computed: {
-    // Ajoute une version dupliquée de la première slide à la fin
     fullSlides() {
       return [...this.slides, this.slides[0]];
     },
   },
   mounted() {
     this.startSlider();
+    this.startFlecheAnimation();
   },
   methods: {
     startSlider() {
       this.slideInterval = setInterval(() => {
         this.nextSlide();
-      }, 5000); // Change toutes les 3 secondes
+      }, 5000);
     },
     nextSlide() {
       this.isTransitioning = true;
       this.currentSlide++;
     },
     onTransitionEnd() {
-      // Si on atteint la slide dupliquée (la dernière), on réinitialise
       if (this.currentSlide === this.slides.length) {
-        this.isTransitioning = false; // Retire la transition pour un changement sans animation
-        this.currentSlide = 0; // Revient à la première slide
+        this.isTransitioning = false;
+        this.currentSlide = 0;
       }
     },
+    // Ouvrir le popup Tookek
     openTookekPopup() {
       this.showTookekPopup = true;
     },
+    // Fermer le popup Tookek
     closeTookekPopup() {
       this.showTookekPopup = false;
     },
+    // Ouvrir le popup Contact
+    openContactPopup() {
+      this.showContactPopup = true;
+    },
+    // Fermer le popup Contact
+    closeContactPopup() {
+      this.showContactPopup = false;
+    },
+    startFlecheAnimation() {
+      if (this.flecheArray.length > 0) {
+        setInterval(() => {
+          this.currentFlecheIndex = (this.currentFlecheIndex + 1) % this.flecheArray.length;
+        }, 50);
+      } else {
+        console.error("Le tableau flecheArray est vide !");
+      }
+    }
   },
   beforeDestroy() {
     clearInterval(this.slideInterval);
   },
 };
 </script>
+
+
 <style scoped>
 /* Définir la grille avec des colonnes et des lignes de tailles différentes */
 .grid-container {
@@ -517,6 +594,23 @@ export default {
   }
 }
 
+
+.fleche-portfolio {
+  position: absolute;
+  top: 40px;
+  left:80px;
+  width: 40px;
+  transform: rotate(124deg);
+}
+
+.fleche-portfolio--2 {
+  top: auto;
+  left:auto;
+  bottom: 90px;
+  right: 110px;
+  width: 40px;
+  transform: rotate(-56deg);
+}
 
 
 

@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg id="fleche19" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 115 320">
+  <defs>
+    <style>
+      .cls-1 {
+        fill: #fece30;
+        stroke: #000;
+        stroke-miterlimit: 10;
+        stroke-width: 2px;
+      }
+    </style>
+  </defs>
+  <polygon class="cls-1" points="57.5 3.80554 108.38196 135.52777 84.4375 159.83331 73.49304 137.83331 73.49304 316.19446 57.5 316.19446 41.50696 316.19446 41.50696 137.83331 30.5625 159.83331 6.61804 135.52777 57.5 3.80554"/>
+</svg>

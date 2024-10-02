@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg id="fleche10" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 115 320">
+  <defs>
+    <style>
+      .cls-1 {
+        fill: #472a72;
+      }
+
+      .cls-1, .cls-2 {
+        stroke: #000;
+        stroke-miterlimit: 10;
+        stroke-width: 2px;
+      }
+
+      .cls-2 {
+        fill: #000dff;
+      }
+    </style>
+  </defs>
+  <polygon class="cls-1" points="85.27778 317.1135 29.72222 317.1135 29.72222 137.23868 29.72222 3.08572 85.27778 3.08572 85.27778 317.1135"/>
+  <line class="cls-2" x1="85.27778" y1="135.67902" x2="29.72222" y2="135.67902"/>
+  <line class="cls-2" x1="29.72222" y1="160" x2="85.27778" y2="160"/>
+</svg>

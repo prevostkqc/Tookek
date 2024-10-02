@@ -95,6 +95,7 @@
       position: relative;
       display: flex;
       padding: 20px 20px 20px 60px;
+      outline: 3px solid #000000;
     }
     
 
