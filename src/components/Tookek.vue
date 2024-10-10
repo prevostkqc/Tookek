@@ -12,25 +12,47 @@
                 <br><br>Afin de simplifier et de <span class="bold">clarifier la gestion de vos projets</span>, nous proposons une approche distincte : pour chaque mission, vous recevez deux devis et deux factures séparées. <span class="bold">Cette transparence</span> vous permet de mieux comprendre et suivre les différentes phases du projet, qu'il s'agisse du design graphique ou du développement technique. Ainsi, <span class="bold">vous avez une vision claire de l'avancement et de la valeur ajoutée</span> de chaque service.
                 <br><br>Notre collaboration est une <span class="bold">véritable synergie</span>, où chaque étape est pensée pour offrir des résultats à la fois <span class="bold">innovants et performants</span>. Nous sommes animés par une passion commune pour le multimédia et les nouvelles technologies, et nous avons à cœur de relever de nouveaux défis pour <span class="bold">concrétiser vos idées les plus ambitieuses</span>.
             </div>
-            <div class="cta-container--pop">
+            <div class="container-bio--texte">
+              <h2>Comment nous travaillons</h2>
+              <p><i class="italic-texte">Notre approche est centrée sur la collaboration et la transparence, afin de vous offrir un accompagnement complet et personnalisé tout au long de votre projet.</i>
+                <br><br><h3 class="titre-etape">1- Échange initial et compréhension des besoins</h3>
+                <br>Tout commence par une discussion avec vous pour bien comprendre vos attentes, vos objectifs et les spécificités de votre projet. Cette phase d’écoute est essentielle pour établir une vision claire et alignée sur vos besoins, qu’il s’agisse du design ou des aspects techniques.
+                <br><br><h3 class="titre-etape">2- Deux devis distincts pour plus de clarté</h3>
+                <br>Nous proposons deux devis séparés : l’un pour la conception graphique et l’autre pour la développement technique. Cette distinction vous permet de mieux visualiser les coûts et les étapes du projet, tout en apportant plus de transparence sur la gestion des différentes phases.
+                <br><br><h3 class="titre-etape">3- Wireframes et documentation visuelle</h3>
+                <br>Une fois les devis validés, nous démarrons avec la création des wireframes, qui sont des maquettes filaires montrant la structure et l’organisation des éléments de votre futur site. Nous réalisons ensuite une direction artistique (DA) et toute la documentation visuelle, qui inclut les détails graphiques et esthétiques nécessaires à la réalisation du projet.
+                <br><br><h3 class="titre-etape">4- Passage au développement</h3>
+                <br>Une fois la documentation visuelle validée, nous passons à l’étape du développement technique. Nous intégrons les maquettes validées et développons votre site avec soin pour assurer une expérience fluide et une performance optimale. Chaque étape est réalisée avec rigueur pour aboutir à un produit final de qualité.
+                <br><br><h3 class="titre-etape">5- Séance de prise en main</h3>
+                <br>À la livraison du projet, nous organisons une séance de prise en main avec vous pour vous présenter le fonctionnement du site et vous donner toutes les clés nécessaires à son utilisation. Vous repartirez ainsi avec une totale autonomie sur votre nouvel outil.
+                <br><br><h3 class="titre-etape">6- Maintenance après publication</h3>
+                <br>Après la livraison, nous offrons une période de maintenance pour gérer les éventuels problèmes ou ajustements qui resteraient dans le cadre du devis initial. Cela vous assure un suivi post-livraison et une tranquillité d’esprit pour débuter avec votre nouveau site.
+              </p>
+          </div>
+        </div>
+        
+        <div class="container-bio--img">
+          <div class="unpreso">
+            <img :src="image1" class="jeremyluscher--img perso--img  jeremyluscher--img1" alt="Jérémy Luscher">
                 <a href="https://tookis.fr/" target="_blank"  class="cta--container pointer">
                     <div class="cta cta--personnage cta--violet">
                         Voir le site de Jérémy
                     </div>
                 </a>
-                
+          </div>
+            
+          <div class="unpreso">
+            <img :src="image2" class="kevinprevost--img perso--img  kevinprevost--img1" alt="Jérémy Luscher">
                 <a href="https://kevinprevost.fr/" target="_blank"  class="cta--container pointer cta-kek">
                     <div class="cta cta--personnage cta--jaune">
                         Voir le site de Kévin
                     </div>
                 </a>
-            </div>
+          </div>
+            
         </div>
-        
-        <div class="container-bio--img">
-            <img :src="image1" class="jeremyluscher--img  jeremyluscher--img1" alt="Jérémy Luscher">
-            <img :src="image2" class="kevinprevost--img   kevinprevost--img1" alt="Jérémy Luscher">
-        </div>
+       
+       
 
       </div>
     </div>
@@ -96,11 +118,12 @@
       border-radius: 30px;
       box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
       width: 100%;
-      max-width:1000px;
+      max-width:1300px;
       position: relative;
       display: flex;
       padding: 20px 20px 20px 60px;
       outline: 3px solid #000000;
+      gap:20px;
     }
     
 
@@ -120,6 +143,7 @@
       flex-direction: column;
       gap: 20px;
       width: 60%;
+      margin-bottom:20px;
     }
 
     .jeremyluscher--img {
@@ -138,11 +162,13 @@
     }
     .container-bio--img{
         display: flex;
-        position: relative;
+        position: sticky;
         top: 0;
         left: 0;
         width: 40%;
         flex-wrap: wrap;
+        align-content: flex-start;
+        gap:20px;
     }
     .cta-container--pop{
         width: 100%;
@@ -161,9 +187,19 @@
     }
     .bold{
         color: #000000;
-        filter: drop-shadow(2px 2px 0px #cd9828);
+        filter: drop-shadow(1px 1px 0px #cd9828);
     }
-    
+    .unperso{
+      width: 100%;
+    }
+    .titre-etape{
+      font-size: 1.3em;
+      margin-bottom:-15px;
+    }
+      .popup-content{
+        height: 100vh;
+        overflow-y: scroll;
+      }
 
     @media (max-width: 1650px) {
       .container-bio{
@@ -187,6 +223,13 @@
       }
       .ctaclose{
         position: fixed;
+      }
+      .unpreso{
+        width: 100%;
+      }
+      .perso--img{
+        width:75%;
+        margin: auto;
       }
     }
   </style>

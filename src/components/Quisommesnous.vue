@@ -1,7 +1,7 @@
 <template>
     <section class="tookisetkek--personnages">
         <!-- Kévin Prévost -->
-        <article class="part-bloc part-bloc--kek  part-bloc--violet part-bloc--personnage">
+        <article class="part-bloc part-bloc--kek  part-bloc--violet part-bloc--personnage" @click="togglePopupKek">
             <h2 class="h2--nom texte--white">
                 <span 
                     v-for="(letter, index) in spacedText(kek)" 
@@ -23,7 +23,7 @@
                     <img :src="kekbrasdroit" class="kek-part kek-part--brasdroit" alt="Bras droit de Kek">
                 </div>
             </div>
-            <div class="cta--container pointer" @click="togglePopupKek">
+            <div class="cta--container pointer">
                 <div class="cta cta--personnage cta--jaune">
                     C'est qui ?
                 </div>
@@ -31,7 +31,7 @@
         </article>
 
         <!-- Jérémy Luscher -->
-        <article class="part-bloc part-bloc--tookis part-bloc--jaune part-bloc--personnage">
+        <article class="part-bloc part-bloc--tookis part-bloc--jaune part-bloc--personnage" @click="togglePopupTookis">
             <h2 class="h2--nom texte--noir">
                 <span 
                     v-for="(letter, index) in spacedText(tookis)" 
@@ -53,7 +53,7 @@
                     <img :src="tookisbrasgauche" class="tookis-part tookis-part--brasgauche" alt="Bras gauche de Tookis">
                 </div>
             </div>
-            <div class="cta--container pointer" @click="togglePopupTookis">
+            <div class="cta--container pointer">
                 <div class="cta cta--personnage cta--violet">
                     Il fait quoi ?
                 </div>
@@ -321,9 +321,16 @@ export default {
 
     
 
-@media (max-width: 1650px) {
+    @media (max-width: 1650px) {
     .part-bloc--personnage{
         min-width: 100%;
+    }
+}
+@media (max-width: 900px) {
+
+    .part-bloc{
+        gap:0px;
+        aspect-ratio: inherit; 
     }
 }
 

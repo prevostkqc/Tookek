@@ -12,18 +12,36 @@
   
           <!-- Formulaire -->
           <div class="cta-container--pop">
-            <form @submit.prevent="sendEmail">
-              <label for="name">Nom Prénom:</label>
-              <input v-model="form.name" type="text" id="name" required />
+            <form @submit.prevent="prepareMailto">
+              <label class="label-champ" for="name">Nom Prénom&nbsp;:</label>
+              <input class="input--champ" v-model="form.name" type="text" id="name" required />
   
-              <label for="company">Compagnie (facultatif):</label>
-              <input v-model="form.company" type="text" id="company" />
+              <label class="label-champ" for="mail">Email&nbsp;:</label>
+              <input class="input--champ" v-model="form.mail" type="email" id="mail" required />
   
-              <label for="description">Description du projet:</label>
-              <textarea v-model="form.description" id="description" required></textarea>
+              <label class="label-champ" for="company">Type de projet&nbsp;:</label>
+              <select class="input--champ input--champ-type" v-model="form.company" id="company" required>
+                <option disabled value="">Sélectionner</option>
+                <option value="Site vitrine">Site vitrine</option>
+                <option value="Site e-commerce">Site e-commerce</option>
+                <option value="Blog">Blog</option>
+                <option value="Portfolio">Portfolio</option>
+                <option value="Landing page">Landing page</option>
+                <option value="Application web">Application web</option>
+                <option value="Site événementiel">Site événementiel</option>
+                <option value="Forum ou communauté">Forum ou communauté</option>
+                <option value="Autre">Autre</option>
+              </select>
   
+              <label class="label-champ" for="description">Message&nbsp;:</label>
+              <textarea class="input--champ" v-model="form.description" id="description" rows="5" required></textarea>
+
+              <!-- reCAPTCHA -->
+              <div class="g-recaptcha" id="g-recaptcha" data-sitekey="6LfyrFYqAAAAAH47s_rFt_XhutCTyBzmgxmTEz2T"></div>
+
+
               <button type="submit" class="cta cta--personnage cta--jaune">
-                Envoyer
+                Valider
               </button>
             </form>
           </div>
@@ -34,50 +52,58 @@
         </div>
       </div>
     </div>
-  </template>
+</template>
+
+<script>
+import image1 from '@/assets/images/tookeklogo.svg';
+
+export default {
+  name: 'Contact',
+  data() {
+    return {
+      image1,
+      form: {
+        name: '',
+        mail: '',
+        company: '',
+        description: ''
+      }
+    };
+  },
+  methods: {
+    closeContactPopup() {
+      this.$emit('close');
+    },
+    addOverlayClickListener() {
+      document.querySelector('.popup-overlay').addEventListener('click', (event) => {
+        if (event.target === event.currentTarget) {
+          this.closeContactPopup();
+        }
+      });
+    },
+    prepareMailto() {
+      const subject = `Contact depuis tookek.fr de ${this.form.name}`;
+      const body = `${this.form.name}\n${this.form.mail}\nType : ${this.form.company}\n---------------\n${this.form.description}`;
+      const mailtoLink = `mailto:contact@tookek.fr?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body).replace(/%0A/g, '%0D%0A')}`;
+      
+      window.location.href = mailtoLink;
+
+      this.closeContactPopup();
+    }
+  },
+  mounted() {
+    this.addOverlayClickListener();
+    if (typeof grecaptcha !== 'undefined') {
+        grecaptcha.render('g-recaptcha', {
+        'sitekey': '6LfyrFYqAAAAAH47s_rFt_XhutCTyBzmgxmTEz2T'
+        });
+    }
+  }
+};
+</script>
+
   
 
-  <script>
-  import image1 from '@/assets/images/tookeklogo.svg';
-  
-  export default {
-    name: 'Contact',
-    data() {
-      return {
-        image1,
-        form: {
-          name: '',
-          company: '',
-          description: ''
-        }
-      };
-    },
-    methods: {
-      closeContactPopup() {
-        this.$emit('close');
-      },
-      addOverlayClickListener() {
-        document.querySelector('.popup-overlay').addEventListener('click', (event) => {
-          if (event.target === event.currentTarget) {
-            this.closeContactPopup();
-          }
-        });
-      },
-      sendEmail() {
-        // Construction dynamique de l'URL mailto
-        const mailtoLink = `mailto:contact@tookek.fr?subject=Contact depuis tookek.fr&body=Nom Prénom: ${encodeURIComponent(this.form.name)}%0D%0ACompagnie (facultatif): ${encodeURIComponent(this.form.company)}%0D%0ADescription du projet: %0D%0A${encodeURIComponent(this.form.description)}%0D%0A%0D%0A`;
-  
-        // Ouvre le lien dans une nouvelle fenêtre
-        window.open(mailtoLink, '_blank');
-      }
-    },
-    mounted() {
-      this.addOverlayClickListener();
-    }
-  };
-  </script>
-  
-  
   <style scoped>
     .popup-overlay {
       position: fixed;
@@ -95,18 +121,44 @@
       padding-bottom: 20px;
     }
     
+    .g-recaptcha{
+        margin-top: 20px;
+        background-color: #FFFFFF;
+        border: solid 3px #000000;
+        border-radius: 20px;
+        overflow: hidden;
+        width: fit-content;
+    }
     .popup-content {
       background-color: #644087; 
       border-radius: 30px;
       box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
       width: 100%;
-      max-width:1000px;
+      max-width:1100px;
       position: relative;
       display: flex;
       padding: 20px 20px 20px 60px;
       outline: 3px solid #000000;
     }
-    
+
+    .input--champ{
+        border-radius: 20px;
+        border: none;
+        padding: 10px;
+        width: 100%;
+        border: solid 3px #000000;
+        background: #c4b3d5;
+        font-size: 1.5em;
+        font-weight: 500;
+        font-family: rubik;
+    }
+
+    label.label-champ {
+        font-size: 1.5em;
+        display: block;
+        margin: 20px 0 5px;
+        color: #ffffff;
+    }
 
     .container-bio--texte{
       padding: 30px;
@@ -118,12 +170,12 @@
     }
 
     .container-bio{
-      display: flex;
-      align-items: center;
-      justify-content: flex-start;
-      flex-direction: column;
-      gap: 20px;
-      width: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: flex-start;
+        flex-direction: column;
+        gap: 20px;
+        width: 100%;
     }
 
     .jeremyluscher--img {
@@ -167,12 +219,28 @@
         color: #000000;
         filter: drop-shadow(2px 2px 0px #cd9828);
     }
+    .input--champ-type{
+        text-align: left;
+    }
+    .input--champ-type{
+        border-radius: 20px;
+        font-weight: 400;
+
+    }
+    .input--champ-type option:checked {
+        font-weight: 600;
+        background: #644087;
+    }
+    .cta--personnage{
+        margin-top: 25px;
+    }
     
 
     @media (max-width: 1650px) {
       .container-bio{
           flex-wrap: wrap;
           justify-content: center;
+          gap: 0;
       }
       .popup-content{
         flex-wrap: wrap;
@@ -191,6 +259,15 @@
       }
       .ctaclose{
         position: fixed;
+      }
+      .input--champ{
+        padding: 7px 15px;
+        font-size: 1.2em;
+        font-weight: 400;
+      }
+      .label-champ{
+        font-size: 1.2em;
+        margin-top:15px;
       }
     }
   </style>

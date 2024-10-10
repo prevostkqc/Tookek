@@ -91,7 +91,7 @@
       border-radius: 30px;
       box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
       width: 100%;
-      max-width:1000px;
+      max-width:1100px;
       position: relative;
       display: flex;
       padding: 20px 20px 20px 60px;

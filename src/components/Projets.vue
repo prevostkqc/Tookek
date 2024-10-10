@@ -1,0 +1,553 @@
+<template>  
+  <section class="projets">
+    <!-- Liste des projets, masquée seulement si isProjectListVisible est false -->
+    <div class="div-projets-list" v-if="isProjectListVisible">
+      <ul class="projets-list">
+        <li 
+          v-for="project in projects" 
+          :key="project.id" 
+          :class="[{ selected: project.id === selectedProjectId }, 'projets-list--item']"
+          @click="selectProject(project.id)"
+        >
+          <img :src="getImageForProject(project)" alt="Projet {{ project.nomduprojet }}" />
+          <h4 class="titre-projet-li">{{ project.nomduprojet }}</h4>
+        </li>
+      </ul>
+    </div>
+    <div class="ctacloseprojet" @click="closeProjets"><div class="ctacloseprojettexte">></div></div>
+
+    <!-- Détails du projet, visible seulement quand currentProject n'est pas null -->
+    <div v-if="isProjectDetailsVisible && currentProject" id="projet-actuel">
+      <article class="un-projet">
+        <!-- Contenu du projet -->
+        <div class="deux-sections  deux-section--une">
+          <div class="un-projet--titre une-section une-section--violet  deux-section--une   deux-section--une-header    deux-section--premiere">
+            <h2>{{ currentProject.nomduprojet }}</h2>
+            <p class="annee">{{ currentProject.date }}</p>
+            <br>
+
+            <ul class="technos-list">
+              <li v-for="techno in currentProject.technos" :key="techno">
+                <img :src="getTechImage(techno)" :alt="techno" class="techno-image" />
+                <p>{{ techno }}</p>
+              </li>
+            </ul>
+          </div>
+
+          <div class="une-section une-section--jaune  deux-section--une  deux-section--deuxieme  deux-section--une-header">
+            <h2>Le site {{ currentProject.client }}</h2>
+            <br>
+            <div class="logotexte">
+              <img :src="getLogo()" class="resultat-preview--mobile image-logo" :alt="'Logo du projet ' + currentProject.nomduprojet" />
+              <p>{{ currentProject.texteclient }}</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Autres sections du projet -->
+        <div class="deux-sections">
+          <div  :class="['une-section', 'objectif--'+currentProject.design]">
+            <h2>Design</h2>
+            <div class="content-objectif">
+              <div>
+                <img :src="image1" :class="['objectif--img ', 'kevinprevost--img',  'objectif-img--'+currentProject.design]" alt="Kévin Prévost">
+                <img :src="image2" :class="['objectif--img ', 'jeremyluscher--img', 'objectif-img--'+currentProject.design]" alt="Jérémy Luscher">
+                  <p :class="['objectif-kp', 'objectif-nom--'+currentProject.design]">Kévin <span class="bold">Prévost</span></p>
+                  <p :class="['objectif-jl', 'objectif-nom--'+currentProject.design]">Jérémy <span class="bold">Luscher</span></p>
+
+              </div>
+              <p>{{ currentProject.objectifdesign }}</p>
+            </div>
+          </div>
+          <div :class="['une-section', 'objectif--'+currentProject.code]">
+            <h2>Développement</h2>
+            <div class="content-objectif">
+              <div>
+                  <img :src="image1" :class="['objectif--img ', 'kevinprevost--img',  'objectif-img--'+currentProject.code]" alt="Kévin Prévost">
+                  <img :src="image2" :class="['objectif--img ', 'jeremyluscher--img', 'objectif-img--'+currentProject.code]" alt="Jérémy Luscher">
+                  <p :class="['objectif-kp', 'objectif-nom--'+currentProject.code]">Kévin <span class="bold">Prévost</span></p>
+                  <p :class="['objectif-jl', 'objectif-nom--'+currentProject.code]">Jérémy <span class="bold">Luscher</span></p>
+              </div>
+              <p>{{ currentProject.objectifdev }}</p>
+            </div>
+            
+          </div>
+          
+        </div>
+
+        <div class="une-section une-section--violet">
+          <h2>Résultat {{ currentProject.nomduprojet }}</h2>
+          <div class="resultat-container">
+            <div class="resultat-part resultat-part--texte">
+              <p class="resultat--texte">{{ currentProject.resultat }}</p>
+              <a class="cta--container pointer" :href="currentProject.lienprojet" target="_blank">
+                <div class="cta cta--jaune">Voir le projet en ligne</div>
+              </a>
+              <div class="image-mobile">
+                <img :src="imageprojetmobile" class="resultat-preview--mobile" :alt="'Projet ' + currentProject.nomduprojet" />
+              </div>
+            </div>
+
+            <div class="resultat-part resultat-part--image">
+              <img :src="imageprojet" class="resultat-preview" :alt="'Projet ' + currentProject.nomduprojet" />
+            </div>
+          </div>
+        </div>
+
+      </article>
+    </div>
+  </section>
+</template>
+
+
+
+  
+<script>
+import axios from 'axios';
+import image1 from '@/assets/images/bd/kek1.svg';
+import image2 from '@/assets/images/bd/tookis-bd1.svg';
+
+export default {
+  props: {
+    selectedProjectId: {
+      type: Number,
+      default: null,
+    }
+  },
+  data() {
+    return {
+      projects: [], // Liste de tous les projets
+      currentProject: null, // Projet actuellement chargé
+      isProjectListVisible: true, // Contrôle la visibilité de la liste des projets
+      isProjectDetailsVisible: false, // Contrôle la visibilité des détails du projet
+      image1,
+      image2
+    }
+  },
+  watch: {
+    selectedProjectId: {
+      immediate: true,
+      handler(newValue) {
+        if (newValue) {
+          this.selectProject(newValue); // Sélectionne le projet dès que la prop change
+        }
+      }
+    }
+  },
+  computed: {
+    imageprojet() {
+      if (this.currentProject) {
+        return `/images/preview-projets/${this.currentProject.nomimageprojet}.jpg`;
+      }
+      return '';
+    },
+    imageprojetmobile() {
+      if (this.currentProject) {
+        return `/images/preview-projets/${this.currentProject.nomimageprojet}-m.jpg`;
+      }
+      return '';
+    }
+  },
+  methods: {
+    async loadProjects() {
+      try {
+        const response = await axios.get('/data/projets.json');
+        this.projects = response.data;
+        if (this.selectedProjectId) {
+          this.selectProject(this.selectedProjectId);
+        }
+      } catch (error) {
+        console.error('Erreur lors du chargement des projets:', error);
+      }
+    },
+    selectProject(projectId) {
+      const project = this.projects.find((project) => project.id === projectId);
+      if (project) {
+        this.currentProject = project;
+        this.isProjectDetailsVisible = true; // Afficher les détails du projet
+        this.isProjectListVisible = true; // Garde la liste visible quand un projet est sélectionné
+
+        this.$nextTick(() => {
+          const element = document.getElementById('projet-actuel');
+          if (element) {
+            const offsetTop = element.getBoundingClientRect().top + window.scrollY - 10;
+            window.scrollTo({ top: offsetTop, behavior: 'smooth' });
+          }
+        });
+      }
+    },
+    closeProjets() {
+      this.currentProject = null;
+      this.isProjectDetailsVisible = false;
+      this.isProjectListVisible = false;
+      this.$emit('close');
+    },
+    getTechImage(techno) {
+      return `/images/technos/${techno}.png`;
+    },
+    getLogo() {
+      if (this.currentProject) {
+        return `/images/logos/${this.currentProject.logo}.png`;
+      }
+      return '';
+    },
+    getImageForProject(project) {
+      return `/images/preview-projets/${project.nomimageprojet}-p.jpg`;
+    }
+  },
+  mounted() {
+    this.loadProjects(); // Charger les projets et rendre la liste visible
+  }
+};
+
+
+</script>
+  
+
+  
+  
+<style scoped>
+
+    .div-projets-list{
+        width:100%;
+    }
+
+    .projets-list {
+        display: flex;
+        gap: 20px;
+        list-style-type: none;
+        padding: 0;
+        width: 100%;
+        border-top: solid 6px;
+        padding-top: 30px;
+    }
+    
+
+    .projets-list li {
+        width: calc(10% - 2px);
+        cursor: pointer;
+        text-align: center;
+        transition: transform 0.3s ease;
+        background: #FDB925;
+        border: 3px solid #000000;
+        border-radius: 20px;
+        opacity:0.5;
+    }
+
+    .projets-list li.selected {
+        border: 3px solid #000000;
+        background: #8B69AD;
+        opacity:1;
+    }
+
+    .projets-list li.selected .titre-projet-li{
+        color: white;
+    }
+
+    .projets-list li:hover {
+        opacity:1;
+    }
+
+    .projets-list img {
+        width: calc(100% - 20px);
+        height: 150px;
+        object-fit: cover;
+        border-radius: 16px;
+        border: 3px solid #000000;
+        margin: 10px;
+    }
+    .titre-projet-li{
+        font-size: 1.5em;
+        padding: 10px;
+    }
+
+    .technos-list {
+      list-style-type: none;
+      padding: 0;
+      display: flex;
+      gap: 20px;
+      justify-content: flex-start;
+      align-items: center;
+      flex-wrap: wrap;
+    }
+
+
+    
+
+    .technos-list li {
+      text-align: center;
+      padding: 10px;
+      background: #75579b;
+      border-radius: 20px;
+      width: calc(12% - 56px);
+      transition: 0.3s;
+  }
+
+  
+  .technos-list li:hover {
+      background: #75579b55;
+  }
+
+
+  .techno-image {
+    width: 50px; /* Ajuste la taille selon tes besoins */
+    height: 50px;
+    object-fit: contain;
+  }
+
+
+  .projets {
+    overflow: hidden;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 30px;
+    padding: 0px 20px;
+    max-width: 2000px;
+    position: relative;
+    width: 100%;
+    max-height: 0px;
+    animation: apparition 2s forwards linear;
+  }
+  .resultat--texte{
+    margin-bottom: 20px;
+  }
+  .un-projet {
+    width: 100%;
+  }
+  .resultat-container{
+    display: flex;
+    gap: 40px;
+    flex-wrap: wrap;
+  }
+  .resultat-part{
+    width: calc(30% - 40px);
+  }
+  .resultat-part--image{
+    width: calc(70% - 40px);
+    overflow: hidden;
+    overflow-y: scroll;
+    border-radius: 20px 0 0 20px;
+    border:solid 3px #000000;
+    max-height:1200px;
+  }
+  .resultat-preview{
+    width:100%;
+  }
+.annee{
+    font-size: 1.5em;
+    font-weight: bold;
+}
+
+
+    /* Firefox */
+    .projets {
+        scrollbar-width: thin;
+        scrollbar-color: #FDB925 #8B69AD;
+        border-radius: 20px;
+    }
+
+    .image-mobile{
+        width: 80%;
+        margin-top: 30px;
+
+        overflow: hidden;
+        overflow-y: scroll;
+        border-radius: 20px 0 0 20px;
+        border: solid 3px #000000;
+        max-height: 800px;
+    }
+    .resultat-preview--mobile{
+        width:100%;
+    }
+
+  
+  .une-section {
+    border-radius: 20px;
+    outline: 3px solid #000000;
+    transition: 0.5s;
+    width: 100%;
+    padding: 30px;
+    margin-bottom: 30px;
+    display: flex;
+    gap: 10px;
+    flex-direction: column;
+  }
+  
+  .une-section--jaune {
+    background-color: #FDB925;
+  }
+  
+  .une-section--violet {
+    background-color: #8B69AD;
+  }
+  
+  .une-section--violet h2,
+  .une-section--violet p {
+    color: #FFFFFF;
+  }
+
+  
+  .objectif--kek {
+    background-color: #FDB925;
+  }
+  
+  .objectif--tookis {
+    background-color: #8B69AD;
+  }
+  
+  .objectif--tookis  h2,
+  .objectif--tookis  p {
+    color: #FFFFFF;
+  }
+
+  .logotexte{
+    display: flex;
+    gap: 20px;
+  }
+
+  .image-logo{
+    width: 70px;
+    height: 70px;
+  }
+  .deux-sections{
+      flex-wrap: nowrap;
+      display: flex;
+      justify-content: space-between;
+      gap: 30px;
+  }
+  .deux-section--une{
+      width: calc(50% - 10px);
+  }
+  .deux-section--premiere{
+      width: calc(30% - 10px);
+  }
+  .deux-section--deuxieme{
+      width: calc(70% - 10px);
+  }
+
+
+  .deux-section--une{
+    width:100%;
+    flex-wrap: wrap;
+    gap: 0;
+  }
+
+  .deux-section--une-header{
+    width:100%;
+  }
+
+
+  #projet-actuel{
+    padding-top: 30px;
+    border-top: solid 6px;
+  }
+
+  .ctacloseprojet{
+    width: fit-content;
+      /* background: red; */
+      display: flex;
+      justify-content: center;
+      align-items: center;
+  }
+  .ctacloseprojettexte{
+    font-size: 5em;
+    font-weight: 700;
+    width: 100px;
+    height: 100px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 100px;
+    background: #8b69ad;
+    color: white;
+    border: solid 5px black;
+    transform: rotate(-90deg);
+
+    position:fixed;
+
+    bottom: 50px;
+    right: 50px;
+  }
+  
+  .ctacloseprojet:after{
+    content: '';
+    font-size: 1.5em;
+    font-weight: 700;
+    display: block;
+    text-align: center;
+    color: black;
+  }
+
+  
+  .objectif--img{
+      width:130px;
+    }
+    
+    .content-objectif{
+        display: flex;
+        gap: 20px;
+        align-items: center;
+    }
+
+    .jeremyluscher--img.objectif-img--kek,
+    .kevinprevost--img.objectif-img--tookis{
+        display: none;
+    }
+
+    .objectif-kp.objectif-nom--tookis,
+    .objectif-jl.objectif-nom--kek{
+        display: none;
+
+    }
+  @keyframes apparition {
+    0% {
+      max-height: 0px;
+      padding: 0px 20px;
+    }
+    20% {
+      padding: 20px;
+    }
+    100% {
+      padding: 20px;
+      max-height: 10000px;
+    }
+  }
+
+    
+  @media (max-width: 1650px) {
+    .projets-list{
+      flex-wrap: wrap;
+    }
+    .projets-list li{
+      width: calc(33% - 10px);
+    }
+    .technos-list li{
+      width: calc(16% - 8px);
+    }
+  }
+
+
+  @media screen and (max-width: 900px) {
+    .technos-list li{
+      width: calc(50% - 10px);
+    }
+    .projets-list li{
+      width: calc(50% - 10px);
+    }
+    .deux-sections{
+      flex-wrap:wrap;
+    }
+    .resultat-part{
+      width: 100%;
+    }
+    .image-mobile,
+    .resultat-part--image{
+      width:100%;
+      border-radius: 20px;
+    }
+    .content-objectif{
+      flex-wrap: wrap;
+    }
+  }
+</style>
+  
