@@ -1,6 +1,5 @@
 <template>  
   <section class="projets">
-    <!-- Liste des projets, masquée seulement si isProjectListVisible est false -->
     <div class="div-projets-list" v-if="isProjectListVisible">
       <ul class="projets-list">
         <li 
@@ -16,16 +15,13 @@
     </div>
     <div class="ctacloseprojet" @click="closeProjets"><div class="ctacloseprojettexte">></div></div>
 
-    <!-- Détails du projet, visible seulement quand currentProject n'est pas null -->
     <div v-if="isProjectDetailsVisible && currentProject" id="projet-actuel">
       <article class="un-projet">
-        <!-- Contenu du projet -->
         <div class="deux-sections  deux-section--une">
           <div class="un-projet--titre une-section une-section--violet  deux-section--une   deux-section--une-header    deux-section--premiere">
             <h2>{{ currentProject.nomduprojet }}</h2>
             <p class="annee">{{ currentProject.date }}</p>
             <br>
-
             <ul class="technos-list">
               <li v-for="techno in currentProject.technos" :key="techno">
                 <img :src="getTechImage(techno)" :alt="techno" class="techno-image" />
@@ -33,7 +29,6 @@
               </li>
             </ul>
           </div>
-
           <div class="une-section une-section--jaune  deux-section--une  deux-section--deuxieme  deux-section--une-header">
             <h2>Le site {{ currentProject.client }}</h2>
             <br>
@@ -44,7 +39,6 @@
           </div>
         </div>
 
-        <!-- Autres sections du projet -->
         <div class="deux-sections">
           <div  :class="['une-section', 'objectif--'+currentProject.design]">
             <h2>Design</h2>
@@ -54,7 +48,6 @@
                 <img :src="image2" :class="['objectif--img ', 'jeremyluscher--img', 'objectif-img--'+currentProject.design]" alt="Jérémy Luscher">
                   <p :class="['objectif-kp', 'objectif-nom--'+currentProject.design]">Kévin <span class="bold">Prévost</span></p>
                   <p :class="['objectif-jl', 'objectif-nom--'+currentProject.design]">Jérémy <span class="bold">Luscher</span></p>
-
               </div>
               <p>{{ currentProject.objectifdesign }}</p>
             </div>
@@ -70,9 +63,7 @@
               </div>
               <p>{{ currentProject.objectifdev }}</p>
             </div>
-            
           </div>
-          
         </div>
 
         <div class="une-section une-section--violet">
@@ -88,8 +79,29 @@
               </div>
             </div>
 
-            <div class="resultat-part resultat-part--image">
-              <img :src="imageprojet" class="resultat-preview" :alt="'Projet ' + currentProject.nomduprojet" />
+
+
+            <div class="resultat-part resultat-part--image-container">
+
+              <div v-if="currentProject.nombredescreens > 1" class="miniatures-container">
+                <img 
+                  v-for="n in currentProject.nombredescreens" 
+                  :key="n" 
+                  :src="getThumbnailImage(n - 1)" 
+                  class="miniature miniature--projet" 
+                  :alt="'Miniature ' + currentProject.nomduprojet + ' - ' + n" 
+                  @click="updateMainImage(n - 1)" 
+                />
+              </div>
+              <div class="resultat-part--image">
+                
+                <img 
+                  :src="currentMainImage" 
+                  class="resultat-preview" 
+                  :alt="'Projet ' + currentProject.nomduprojet" 
+                />
+
+              </div>
             </div>
           </div>
         </div>
@@ -101,7 +113,6 @@
 
 
 
-  
 <script>
 import axios from 'axios';
 import image1 from '@/assets/images/bd/kek1.svg';
@@ -116,10 +127,12 @@ export default {
   },
   data() {
     return {
-      projects: [], // Liste de tous les projets
-      currentProject: null, // Projet actuellement chargé
-      isProjectListVisible: true, // Contrôle la visibilité de la liste des projets
-      isProjectDetailsVisible: false, // Contrôle la visibilité des détails du projet
+      projects: [],
+      currentProject: null,
+      isProjectListVisible: true,
+      isProjectDetailsVisible: false,
+      currentMainImage: '',
+      currentMobileImage: '',
       image1,
       image2
     }
@@ -129,24 +142,18 @@ export default {
       immediate: true,
       handler(newValue) {
         if (newValue) {
-          this.selectProject(newValue); // Sélectionne le projet dès que la prop change
+          this.selectProject(newValue);
         }
       }
     }
   },
   computed: {
     imageprojet() {
-      if (this.currentProject) {
-        return `/images/preview-projets/${this.currentProject.nomimageprojet}.jpg`;
-      }
-      return '';
+      return this.currentProject ? `/images/preview-projets/${this.currentProject.nomimageprojet}.jpg` : '';
     },
     imageprojetmobile() {
-      if (this.currentProject) {
-        return `/images/preview-projets/${this.currentProject.nomimageprojet}-m.jpg`;
-      }
-      return '';
-    }
+      return this.currentProject ? `/images/preview-projets/${this.currentProject.nomimageprojet}-m.jpg` : '';
+    },
   },
   methods: {
     async loadProjects() {
@@ -164,16 +171,9 @@ export default {
       const project = this.projects.find((project) => project.id === projectId);
       if (project) {
         this.currentProject = project;
-        this.isProjectDetailsVisible = true; // Afficher les détails du projet
-        this.isProjectListVisible = true; // Garde la liste visible quand un projet est sélectionné
-
-        this.$nextTick(() => {
-          const element = document.getElementById('projet-actuel');
-          if (element) {
-            const offsetTop = element.getBoundingClientRect().top + window.scrollY - 10;
-            window.scrollTo({ top: offsetTop, behavior: 'smooth' });
-          }
-        });
+        this.isProjectDetailsVisible = true;
+        this.isProjectListVisible = true;
+        this.currentMainImage = this.getAdditionalImage(0);
       }
     },
     closeProjets() {
@@ -193,26 +193,68 @@ export default {
     },
     getImageForProject(project) {
       return `/images/preview-projets/${project.nomimageprojet}-p.jpg`;
-    }
+    },
+    getAdditionalImage(index) {
+      const suffix = index === 0 ? '' : index + 1;
+      return `/images/preview-projets/${this.currentProject.nomimageprojet}${suffix}.jpg`;
+    },
+    getThumbnailImage(index) {
+      const suffix = index === 0 ? '' : `${index + 1}`;
+      return `/images/preview-projets/${this.currentProject.nomimageprojet}${suffix}-p.jpg`;
+    },
+    getAdditionalImageMobile(index) {
+      const suffix = index === 0 ? '' : index + 1;
+      return `/images/preview-projets/${this.currentProject.nomimageprojet}${suffix}-m.jpg`;
+    },
+    updateMainImage(index) {
+      this.currentMainImage = this.getAdditionalImage(index);
+      this.currentMobileImage = this.getAdditionalImageMobile(index);
+    },
   },
   mounted() {
-    this.loadProjects(); // Charger les projets et rendre la liste visible
+    this.loadProjects();
   }
 };
-
-
 </script>
+
   
 
   
   
 <style scoped>
+.miniatures-container {
+  display: flex;
+  gap: 20px;
+  margin-top: 10px;
+  flex-wrap: wrap;
+  margin-bottom: 20px;
+}
+
+.miniature {
+  width: 173px;
+  height: auto;
+  cursor: pointer;
+  border: 2px solid #000;
+  border-radius: 5px;
+  transition: transform 0.3s ease;
+  cursor: url('@/assets/images/cursor-hover.svg') 3 3, auto !important;
+}
+
+.miniature:hover {
+  transform: scale(1.1);
+}
+
+.miniature--projet{
+  border-radius: 20px;
+  margin: 0 20px 20px 0;
+}
 
     .div-projets-list{
         width:100%;
     }
 
     .projets-list {
+      flex-wrap: wrap;
         display: flex;
         gap: 20px;
         list-style-type: none;
@@ -322,8 +364,11 @@ export default {
   .resultat-part{
     width: calc(30% - 40px);
   }
-  .resultat-part--image{
+  .resultat-part--image-container{
     width: calc(70% - 40px);
+  }
+  .resultat-part--image{
+    width: 100%;
     overflow: hidden;
     overflow-y: scroll;
     border-radius: 20px 0 0 20px;
@@ -332,6 +377,9 @@ export default {
   }
   .resultat-preview{
     width:100%;
+    height: auto;
+    display: block;
+    visibility: visible;
   }
 .annee{
     font-size: 1.5em;
@@ -477,7 +525,6 @@ export default {
     text-align: center;
     color: black;
   }
-
   
   .objectif--img{
       width:130px;
