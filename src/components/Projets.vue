@@ -689,6 +689,30 @@ export default {
   .objectif--aucun{
     display:none;
   }
+    .projets-list--item{
+      position: relative;
+    }
+    .type--site{
+      background: #8b69ad;
+      position: absolute;
+      top: -2px;
+      left: -2px;
+      padding: 2px 15px;
+      border-radius: 15px;
+      color: white;
+      border: solid 2px black;
+    }
+    .type--visuel{
+      background: #FDB925;
+      position: absolute;
+      top: -2px;
+      left: -2px;
+      padding: 2px 15px;
+      border-radius: 15px;
+      color: black;
+      border: solid 2px black;
+    }
+
 
   @media (min-width: 1650px){
     .mini-page.mini-page{
@@ -717,30 +741,6 @@ export default {
       transform: scale(1.155);
     }
     
-    .projets-list--item{
-      position: relative;
-    }
-    .type--site{
-      background: #8b69ad;
-      position: absolute;
-      top: -2px;
-      left: -2px;
-      padding: 2px 15px;
-      border-radius: 15px;
-      color: white;
-      border: solid 2px black;
-    }
-    .type--visuel{
-      background: #FDB925;
-      position: absolute;
-      top: -2px;
-      left: -2px;
-      padding: 2px 15px;
-      border-radius: 15px;
-      color: black;
-      border: solid 2px black;
-    }
-
   }
   @media (max-width: 1650px) {
     .projets-list{
