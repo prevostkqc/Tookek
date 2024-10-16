@@ -11,6 +11,7 @@
         >
           <img :src="getImageForProject(project)" alt="Projet {{ project.nomduprojet }}" />
           <h4 class="titre-projet-li">{{ project.nomduprojet }}</h4>
+          <p :class="'type--'+project.typeicone">{{ project.typeicone }}</p>
         </li>
       </ul>
     </div>
@@ -20,10 +21,11 @@
     </div>
 
     <div v-if="isProjectDetailsVisible && currentProject" id="projet-actuel">
-      <article class="un-projet">
+      <article :class="['un-projet', 'typeprojet'+currentProject.slugtypedeprojet]">
         <div class="deux-sections  deux-section--une">
           <div class="une-section une-section--violet  deux-section--une  deux-section--deuxieme  deux-section--une-header">
             <h2 class="nom-du-projet">{{ currentProject.nomduprojet }}</h2>
+            <p class="annee">{{ currentProject.typedeprojet }}</p>
             <p class="annee">{{ currentProject.date }}</p>
             <br>
             <div class="logotexte">
@@ -73,7 +75,7 @@
         </div>
 
         <div class="une-section une-section--violet  une-section--resultat">
-          <h2>Résultat {{ currentProject.nomduprojet }}</h2>
+          <h2>Résultat du projet {{ currentProject.nomduprojet }}</h2>
           <div class="resultat-container">
             <div class="resultat-part resultat-part--texte">
               <p class="resultat--texte">{{ currentProject.resultat }}</p>
@@ -83,9 +85,8 @@
               
 
 
-              <div v-for="n in currentProject.nombredescreens" :key="n" class="miniatures-container  mini--mobile">
-                
-                <div @click="updateMainImage(n - 1)" class="mini-page" :class="['mini-page', { 'mini-projet--selected': selectedThumbnailIndex === (n - 1) }]"  >
+                <div v-if="currentProject.versionmobile != 'non'" v-for="n in nombreDePages" :key="n" class="miniatures-container mini--mobile">
+                  <div v-if="nombreDePages > 1" @click="updateMainImage(n - 1)" class="mini-page" :class="['mini-page', { 'mini-projet--selected': selectedThumbnailIndex === (n - 1) }]">
                     <img 
                       :src="getThumbnailImage(n - 1)" 
                       :class="['miniature', 'miniature--projet', { 'miniature-projet--selected': selectedThumbnailIndex === (n - 1) }]" 
@@ -98,18 +99,22 @@
                   </div>
                 </div>
 
-              <div class="image-mobile">
+              <div class="image-mobile" v-if="currentProject.versionmobile != 'non'">
                 <img :src="currentMobileImage" class="resultat-preview--mobile" :alt="'Projet ' + currentProject.nomduprojet" />
               </div>
             </div>
 
 
 
-            <div class="resultat-part resultat-part--image-container">
+            <div :class="[
+                'resultat-part', 
+                'resultat-part--image-container', 
+                currentProject.typedeprojet == 'Bannière' ? 'resultat-visuel-' + currentProject.versionmobile : ''
+              ]">
 
-              <div v-if="currentProject.nombredescreens > 1" class="miniatures-container miniatures-container--top">
-                <div v-for="n in currentProject.nombredescreens" :key="n" class="miniature-wrapper">
-                  <div @click="updateMainImage(n - 1)" class="mini-page" :class="['mini-page', { 'mini-projet--selected': selectedThumbnailIndex === (n - 1) }]"  >
+              <div v-if="nombreDePages > 1" class="miniatures-container miniatures-container--top">
+                <div v-for="n in nombreDePages" :key="n" class="miniature-wrapper">
+                  <div @click="updateMainImage(n - 1)" class="mini-page" :class="['mini-page',{ 'mini-projet--selected': selectedThumbnailIndex === (n - 1) }]"  >
                     <img 
                       :src="getThumbnailImage(n - 1)" 
                       :class="['miniature', 'miniature--projet', { 'miniature-projet--selected': selectedThumbnailIndex === (n - 1) }]" 
@@ -122,7 +127,7 @@
                   
                 </div>
               </div>
-              <div class="resultat-part--image">
+              <div :class="['resultat-part--image',  'mobile-visuel-'+currentProject.versionmobile]">
                 
                 <img 
                   :src="currentMainImage" 
@@ -186,6 +191,13 @@ export default {
     imageprojetmobile() {
       return this.currentProject ? `/images/preview-projets/${this.currentProject.nomimageprojet}-m.jpg` : '';
     },
+    nombreDePages() {
+    if (!this.currentProject || !this.currentProject.nomdespages || this.currentProject.nomdespages.length === 0) {
+      return 1;
+    }
+    const nonEmptyPages = this.currentProject.nomdespages.filter(page => page.trim() !== "");
+    return nonEmptyPages.length > 0 ? nonEmptyPages.length : 1;
+  }
   },
   methods: {
     async loadProjects() {
@@ -328,7 +340,7 @@ export default {
         background: #FDB925;
         border: 3px solid #000000;
         border-radius: 20px;
-        opacity:0.5;
+        opacity:0.7;
     }
 
     .projets-list li.selected {
@@ -336,6 +348,7 @@ export default {
         background: #8B69AD;
         opacity:1;
     }
+
 
     .projets-list li.selected .titre-projet-li{
         color: white;
@@ -548,7 +561,7 @@ export default {
       max-height: 640px;
       overflow-y: scroll;
     }
-    .projets-list li[data-v-c040f353] {
+    .projets-list li{
         opacity: 1;
     }
     .projets-list{
@@ -653,6 +666,12 @@ export default {
       font-size: 1.6em;
       margin-bottom: 20px;
     }
+
+
+    .resultat-visuel-non .mobile-visuel-non{
+      overflow: hidden;
+      border-radius: 20px;
+    }
   @keyframes apparition {
     0% {
       max-height: 0px;
@@ -665,6 +684,10 @@ export default {
       padding: 20px;
       max-height: 10000px;
     }
+  }
+
+  .objectif--aucun{
+    display:none;
   }
 
   @media (min-width: 1650px){
@@ -686,6 +709,38 @@ export default {
     .mini-projet--selected .miniature-title{
       background-color: #472a72;
     }
+    .projets-list li img{
+      transform: scale(1);
+      transition: 0.3s;
+    }
+    .projets-list li:hover img{
+      transform: scale(1.155);
+    }
+    
+    .projets-list--item{
+      position: relative;
+    }
+    .type--site{
+      background: #8b69ad;
+      position: absolute;
+      top: -2px;
+      left: -2px;
+      padding: 2px 15px;
+      border-radius: 15px;
+      color: white;
+      border: solid 2px black;
+    }
+    .type--visuel{
+      background: #FDB925;
+      position: absolute;
+      top: -2px;
+      left: -2px;
+      padding: 2px 15px;
+      border-radius: 15px;
+      color: black;
+      border: solid 2px black;
+    }
+
   }
   @media (max-width: 1650px) {
     .projets-list{

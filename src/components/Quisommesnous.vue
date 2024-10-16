@@ -207,19 +207,19 @@ export default {
         top: 43%;
         left: auto;
         right: 8%;
-        animation: 3s infinite bougerbrasgauche-0a72df5d, 2s infinite bougercorps-0a72df5d;
+        animation: 3s infinite bougerbrasgauche, 2s infinite bougercorps;
         width: 30%;
     }
     .kek-part--brasdroit{
         transform-origin: top right;
         top: 43%;
-        animation: 3s infinite bougerbrasdroit-0a72df5d, 2s infinite bougercorps-0a72df5d;
+        animation: 3s infinite bougerbrasdroit, 2s infinite bougercorps;
         width: 30%;
     }
     .kek-part--lunettes{
         top: 30%;
     left: 30%;
-    animation: 2s infinite bougerlunettes-0a72df5d, balancerlunettes-0a72df5d 2s infinite;
+    animation: 2s infinite bougerlunettes, balancerlunettes 2s infinite;
     width: 50%;
     }
     .kek-part--corps{
@@ -269,20 +269,20 @@ export default {
         top: 43%;
         left: auto;
         right: 4%;
-        animation: 3s infinite bougerbrasgauche-0a72df5d, 2s infinite bougercorps-0a72df5d;
+        animation: 3s infinite bougerbrasgauche, 2s infinite bougercorps;
         width: 30%;
     }
     .tookis-part--brasdroit{
         transform-origin: top right;
         top: 43%;
-        animation: 3s infinite bougerbrasdroit-0a72df5d, 2s infinite bougercorps-0a72df5d;
+        animation: 3s infinite bougerbrasdroit, 2s infinite bougercorps;
         width: 27%;
         left: 11%;
     }
     .tookis-part--lunettes{
         top: 28%;
         left: 17%;
-        animation: 2s infinite bougerlunettes-0a72df5d, balancerlunettestookis 2s infinite;
+        animation: 2s infinite bougerlunettes, balancerlunettestookis 2s infinite;
         width: 52%;
     }
     .tookis-part--corps{

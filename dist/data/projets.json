@@ -14,8 +14,10 @@
     "nomimageprojet": "opale",
     "design": "tookis",
     "code": "kek",
-    "nombredescreens": 1,
-    "nomdespages": [""]
+    "nomdespages": [""],
+    "typedeprojet": "Site",
+    "versionmobile": "oui",
+    "typeicone": "site"
   },
   {
     "id": 2,
@@ -32,8 +34,10 @@
     "nomimageprojet": "cybertek",
     "design": "tookis",
     "code": "kek",
-    "nombredescreens": 4,
-    "nomdespages": ["Accueil", "Page de produit", "Liste des PC GAMER", "Un PC GAMER"] 
+    "nomdespages": ["Accueil", "Page de produit", "Liste des PC GAMER", "Un PC GAMER"] ,
+    "typedeprojet": "Site e-commerce",
+    "versionmobile": "oui",
+    "typeicone": "site"
   },
   {
     "id": 3,
@@ -50,8 +54,10 @@
     "nomimageprojet": "grosbill",
     "design": "tookis",
     "code": "kek",
-    "nombredescreens": 1,
-    "nomdespages": [""]
+    "nomdespages": [""],
+    "typedeprojet": "Site e-commerce",
+    "versionmobile": "oui",
+    "typeicone": "site"
   },
   {
     "id": 4,
@@ -60,7 +66,7 @@
     "technos": ["figma", "aspnet", "ajax", "css3", "html5", "js", "illustrator", "photoshop", "git", "visualstudiocode"],
     "client": "Cybertek.fr",
     "logo": "cybertek",
-    "texteclient": "J'ai dirigé la sélection visuelle et codé la landing page du PC sérigraphié 'The Witcher 3: Wild Hunt'. Mon rôle comprenait la supervision de l'équipe graphique pour garantir un design attrayant et la programmation des fonctionnalités interactives pour une expérience utilisateur fluide. Ce projet a mis en avant les capacités du produit tout en démontrant mon expertise en développement web et design visuel, renforçant ainsi la présence en ligne et l'attrait du produit.",
+    "texteclient": "Le projet avait pour objectif de créer une landing page captivante pour promouvoir le PC sérigraphié 'The Witcher 3: Wild Hunt'. L'idée était de mettre en avant les spécifications techniques du produit, tout en reflétant l'univers immersif du jeu. Il fallait attirer l'attention des fans et des visiteurs du site, tout en maximisant l'impact visuel pour favoriser les ventes.",
     "objectifdev": "Mon objectif en tant que développeur front-end était de créer une landing page interactive et engageante pour promouvoir le PC sérigraphié 'The Witcher 3: Wild Hunt'. J'ai programmé les fonctionnalités nécessaires pour offrir une navigation fluide et une interface intuitive, tout en mettant en valeur les aspects techniques du produit.",
     "objectifdesign": "Mon objectif en tant que designer était de diriger la création visuelle de la landing page en étroite collaboration avec l'équipe graphique. J'ai veillé à ce que le design soit en adéquation avec l'univers du jeu 'The Witcher 3' et que chaque élément graphique soutienne l'attrait visuel du produit.",
     "resultat": "Le projet a permis de créer une landing page dynamique, combinant des visuels attrayants et des fonctionnalités interactives, renforçant la présence en ligne du produit et maximisant son impact auprès du public cible.",
@@ -68,8 +74,10 @@
     "nomimageprojet": "thewitcher",
     "design": "tookis",
     "code": "kek",
-    "nombredescreens": 1,
-    "nomdespages": [""]
+    "nomdespages": [""],
+    "typedeprojet": "Landing page",
+    "versionmobile": "oui",
+    "typeicone": "site"
   },
   {
     "id": 5,
@@ -78,17 +86,19 @@
     "technos": ["figma", "aspnet", "ajax", "css3", "html5", "js", "illustrator", "photoshop", "git", "visualstudiocode"],
     "client": "Cybertek.fr",
     "logo": "cybertek",
-    "texteclient": "J'ai dirigé la sélection visuelle et codé la landing page du PC sérigraphié 'The Witcher 3: Wild Hunt'. Mon rôle comprenait la supervision de l'équipe graphique pour garantir un design attrayant et la programmation des fonctionnalités interactives pour une expérience utilisateur fluide. Ce projet a mis en avant les capacités du produit tout en démontrant mon expertise en développement web et design visuel, renforçant ainsi la présence en ligne et l'attrait du produit.",
-    "objectifdev": "Mon objectif en tant que développeur front-end était de créer une landing page interactive et engageante pour promouvoir le PC sérigraphié 'The Witcher 3: Wild Hunt'. J'ai programmé les fonctionnalités nécessaires pour offrir une navigation fluide et une interface intuitive, tout en mettant en valeur les aspects techniques du produit.",
-    "objectifdesign": "Mon objectif en tant que designer était de diriger la création visuelle de la landing page en étroite collaboration avec l'équipe graphique. J'ai veillé à ce que le design soit en adéquation avec l'univers du jeu 'The Witcher 3' et que chaque élément graphique soutienne l'attrait visuel du produit.",
+    "texteclient": "Le projet avait pour but de créer une landing page immersive pour promouvoir le PC sérigraphié 'Assassin's Creed Valhalla'. L'objectif était de capturer l'essence de l'univers du jeu, tout en mettant en avant les spécifications techniques du produit. Il s'agissait de susciter l'intérêt des fans et des visiteurs du site, et d'accroître les ventes en ligne à travers une présentation visuelle percutante.",
+    "objectifdev": "Mon objectif en tant que développeur front-end était de créer une landing page interactive et engageante pour promouvoir le PC sérigraphié 'Assassin's Creed Valhalla'. J'ai programmé les fonctionnalités nécessaires pour offrir une navigation fluide et une interface intuitive, tout en mettant en valeur les aspects techniques du produit.",
+    "objectifdesign": "Mon objectif en tant que designer était de diriger la création visuelle de la landing page en étroite collaboration avec l'équipe graphique. J'ai veillé à ce que le design soit en adéquation avec l'univers du jeu 'Assassin's Creed Valhalla' et que chaque élément graphique soutienne l'attrait visuel du produit.",
     "resultat": "Le projet a permis de créer une landing page dynamique, combinant des visuels attrayants et des fonctionnalités interactives, renforçant la présence en ligne du produit et maximisant son impact auprès du public cible.",
-    "lienprojet": "https://www.cybertek.fr/landing-pages/pc-gamer-serigraphie_the_witcher_3_wild_hunt.aspx",
+    "lienprojet": "https://www.cybertek.fr/landing-pages/pc-gamer-serigraphie_assassins_creed_valhalla.aspx",
     "nomimageprojet": "assassin",
-    "design": "kek",
+    "design": "tookis",
     "code": "kek",
-    "nombredescreens": 1,
-    "nomdespages": [""]
-  },
+    "nomdespages": [""],
+    "typedeprojet": "Landing page",
+    "versionmobile": "oui",
+    "typeicone": "site"
+  },  
   {
     "id": 6,
     "nomduprojet": "Halo Infinite",
@@ -96,7 +106,7 @@
     "technos": ["figma", "aspnet", "ajax", "css3", "html5", "js", "illustrator", "photoshop", "git", "visualstudiocode"],
     "client": "Cybertek.fr",
     "logo": "cybertek",
-    "texteclient": "J'ai dirigé la sélection visuelle et codé la landing page du PC sérigraphié 'Halo Infinite'. Mon rôle comprenait la supervision de l'équipe graphique pour garantir un design attrayant en phase avec l'univers futuriste de Halo. J'ai également programmé des fonctionnalités interactives pour offrir une expérience utilisateur fluide et captivante. Ce projet a permis de renforcer la présence en ligne du produit, tout en attirant l'attention des fans de la saga grâce à un design immersif.",
+    "texteclient": "Le projet visait à créer une landing page engageante pour promouvoir le PC sérigraphié 'Halo Infinite'. L'objectif était de capter l'attention des visiteurs et des fans de la saga, en offrant une expérience immersive fidèle à l'univers du jeu. La landing page devait mettre en avant les caractéristiques techniques du produit tout en renforçant l'attractivité du PC sur le marché.",
     "objectifdev": "Mon objectif en tant que développeur front-end était de créer une landing page interactive et engageante pour promouvoir le PC sérigraphié 'Halo Infinite'. J'ai programmé les fonctionnalités interactives nécessaires pour une navigation fluide et une mise en valeur des aspects techniques du produit, tout en restant fidèle à l'univers du jeu.",
     "objectifdesign": "En tant que designer, mon objectif était de diriger la création visuelle en étroite collaboration avec l'équipe graphique. Le design devait refléter l'univers de science-fiction de Halo Infinite, tout en mettant en avant les caractéristiques du produit de manière attrayante et immersive.",
     "resultat": "Le projet a permis de créer une landing page percutante et immersive, combinant des visuels saisissants et des fonctionnalités interactives, renforçant la connexion avec les fans de la saga Halo et maximisant l'impact marketing du produit.",
@@ -104,9 +114,11 @@
     "nomimageprojet": "haloinfinite",
     "design": "tookis",
     "code": "kek",
-    "nombredescreens": 1,
-    "nomdespages": [""]
-  },
+    "nomdespages": [""],
+    "typedeprojet": "Landing page",
+    "versionmobile": "oui",
+    "typeicone": "site"
+  },  
   {
     "id": 7,
     "nomduprojet": "Cyberpunk 2077",
@@ -114,7 +126,7 @@
     "technos": ["figma", "aspnet", "ajax", "css3", "html5", "js", "illustrator", "photoshop", "git", "visualstudiocode"],
     "client": "Cybertek.fr",
     "logo": "cybertek",
-    "texteclient": "J'ai dirigé la sélection visuelle et codé la landing page du PC sérigraphié 'Cyberpunk 2077'. Mon rôle comprenait la supervision de l'équipe graphique pour garantir un design en phase avec l'esthétique futuriste et dystopique du jeu. J'ai également programmé des fonctionnalités interactives pour offrir une expérience utilisateur immersive et captivante. Ce projet a permis de mettre en avant les caractéristiques techniques du produit tout en captant l'attention des fans de l'univers Cyberpunk.",
+    "texteclient": "Le projet avait pour but de créer une landing page captivante pour le PC sérigraphié 'Cyberpunk 2077'. L'objectif était de plonger les visiteurs dans l'esthétique futuriste et dystopique de l'univers du jeu, tout en mettant en avant les caractéristiques techniques du produit. La page devait attirer l'attention des fans et renforcer l'intérêt pour le PC.",
     "objectifdev": "Mon objectif en tant que développeur front-end était de créer une landing page interactive et engageante pour promouvoir le PC sérigraphié 'Cyberpunk 2077'. J'ai programmé les fonctionnalités nécessaires pour une navigation fluide et une interface qui reflète le style unique du jeu, tout en mettant en avant les aspects techniques du produit.",
     "objectifdesign": "En tant que designer, mon objectif était de diriger la création visuelle en étroite collaboration avec l'équipe graphique. Le design devait capturer l'esthétique cyberpunk et donner une impression d'immersion dans l'univers futuriste du jeu, tout en valorisant le produit.",
     "resultat": "Le projet a abouti à une landing page immersive et visuellement impactante, combinant des éléments de design futuristes et des fonctionnalités interactives. La page a renforcé l'attrait du produit auprès des fans de Cyberpunk, tout en optimisant sa visibilité en ligne.",
@@ -122,9 +134,11 @@
     "nomimageprojet": "cyberpunk",
     "design": "tookis",
     "code": "kek",
-    "nombredescreens": 1,
-    "nomdespages": [""]
-  },
+    "nomdespages": [""],
+    "typedeprojet": "Landing page",
+    "versionmobile": "oui",
+    "typeicone": "site"
+  },  
   {
     "id": 8,
     "nomduprojet": "DéoToon",
@@ -140,8 +154,10 @@
     "nomimageprojet": "deotoon",
     "design": "tookis",
     "code": "kek",
-    "nombredescreens": 1,
-    "nomdespages": [""]
+    "nomdespages": [""],
+    "typedeprojet": "Landing page",
+    "versionmobile": "oui",
+    "typeicone": "site"
   },
   {
     "id": 9,
@@ -158,8 +174,10 @@
     "nomimageprojet": "marquinhos",
     "design": "tookis",
     "code": "kek",
-    "nombredescreens": 1,
-    "nomdespages": [""]
+    "nomdespages": [""],
+    "typedeprojet": "Landing page",
+    "versionmobile": "oui",
+    "typeicone": "site"
   },
   {
     "id": 10,
@@ -176,8 +194,10 @@
     "nomimageprojet": "wedemain",
     "design": "kek",
     "code": "kek",
-    "nombredescreens": 1,
-    "nomdespages": [""]
+    "nomdespages": [""],
+    "typedeprojet": "Site e-commerce",
+    "versionmobile": "oui",
+    "typeicone": "site"
   },
   {
     "id": 11,
@@ -194,8 +214,89 @@
     "nomimageprojet": "piment72",
     "design": "tookis",
     "code": "kek",
-    "nombredescreens": 1,
-    "nomdespages": [""]
+    "nomdespages": [""],
+    "typedeprojet": "Site e-commerce",
+    "versionmobile": "oui",
+    "typeicone": "site"
+  },
+  {
+    "id": 12,
+    "nomduprojet": "Soldes d'été Grosbill",
+    "date": "2023",
+    "technos": ["illustrator", "photoshop"],
+    "client": "Grosbill.com",
+    "logo": "grosbill",
+    "texteclient": "Le client souhaitait une landing page promotionnelle accrocheuse pour les soldes d'été 2023, afin de mettre en avant des offres exclusives sur une variété de produits technologiques. L'objectif était d'attirer l'attention des visiteurs sur le site et d'inciter les achats pendant cette période de soldes, tout en respectant l'image dynamique et professionnelle de Grosbill.",
+    "objectifdev": "",
+    "objectifdesign": "Le design de la landing page devait capturer l'esprit estival, avec des couleurs vives et une composition attrayante. Il était essentiel de refléter l'identité de Grosbill tout en mettant en avant les promotions importantes, grâce à une mise en page claire et percutante.",
+    "resultat": "La landing page des soldes d'été a été un succès, attirant l'attention des visiteurs et augmentant les taux de clics sur les offres spéciales. Le design coloré et dynamique a bien mis en valeur les réductions proposées, contribuant au succès de la campagne et à une hausse des ventes durant la période estivale.",
+    "lienprojet": "https://www.grosbill.com",
+    "nomimageprojet": "ban_ete_2023",
+    "design": "tookis",
+    "code": "aucun",
+    "nomdespages": [""],
+    "typedeprojet": "Landing Page",
+    "versionmobile": "non",
+    "typeicone": "visuel"
+  },
+  {
+    "id": 13,
+    "nomduprojet": "Black Friday Grosbill",
+    "date": "2022",
+    "technos": ["illustrator", "photoshop"],
+    "client": "Grosbill.com",
+    "logo": "grosbill",
+    "texteclient": "Le client souhaitait une bannière promotionnelle percutante pour le Black Friday, afin de mettre en avant des offres exceptionnelles sur une sélection de produits technologiques. L'objectif était d'attirer l'attention des visiteurs sur le site et de stimuler les achats pendant cette période de promotions, tout en respectant l'image moderne et professionnelle de Grosbill.",
+    "objectifdev": "",
+    "objectifdesign": "Le design de la bannière devait refléter l'ambiance du Black Friday avec des couleurs sombres et contrastées, mettant en avant les réductions importantes et créant un sentiment d'urgence. Il était crucial d'assurer une présentation visuelle claire et attractive pour inciter les visiteurs à cliquer sur les offres.",
+    "resultat": "La bannière du Black Friday a réussi à capter l'attention des visiteurs, augmentant les taux de clics et favorisant les ventes pendant la période de promotion. Le design audacieux et contrasté a efficacement mis en valeur les offres, contribuant au succès de la campagne marketing.",
+    "lienprojet": "https://www.grosbill.com",
+    "nomimageprojet": "blackfriday_gb",
+    "design": "tookis",
+    "code": "aucun",
+    "nomdespages": [""],
+    "typedeprojet": "Landing page",
+    "versionmobile": "non",
+    "typeicone": "visuel"
+  },
+  {
+    "id": 14,
+    "nomduprojet": "Noël Grosbill",
+    "date": "2023",
+    "technos": ["illustrator", "photoshop"],
+    "client": "Grosbill.com",
+    "logo": "grosbill",
+    "texteclient": "Le client souhaitait une landing page promotionnelle festive pour Noël, afin de mettre en avant les offres spéciales sur une sélection de produits high-tech. L'objectif était de créer une ambiance chaleureuse et inciter les visiteurs à profiter des promotions durant la période des fêtes, tout en conservant une présentation moderne et élégante.",
+    "objectifdev": "",
+    "objectifdesign": "Le design de la landing page devait évoquer l'esprit de Noël avec des couleurs festives et des éléments graphiques inspirés de la saison. Il était essentiel de rendre les promotions visibles tout en offrant une navigation fluide et attractive pour les visiteurs.",
+    "resultat": "La landing page de Noël a capté l'attention des utilisateurs grâce à un design festif et élégant, ce qui a permis d'augmenter le nombre de clics et les ventes pendant la période des fêtes. Les visuels et les promotions bien mis en valeur ont contribué au succès de la campagne.",
+    "lienprojet": "https://www.grosbill.com",
+    "nomimageprojet": "noel_gb",
+    "design": "tookis",
+    "code": "aucun",
+    "nomdespages": [""],
+    "typedeprojet": "Landing page",
+    "versionmobile": "non",
+    "typeicone": "visuel"
+  },
+  {
+    "id": 15,
+    "nomduprojet": "Soldes d'été Cybertek",
+    "date": "2023",
+    "technos": ["illustrator", "photoshop"],
+    "client": "Cybertek.fr",
+    "logo": "cybertek",
+    "texteclient": "Le client souhaitait une landing page promotionnelle festive pour Noël, afin de mettre en avant les offres spéciales sur une sélection de produits high-tech. L'objectif était de créer une ambiance chaleureuse et inciter les visiteurs à profiter des promotions durant la période des fêtes, tout en conservant une présentation moderne et élégante.",
+    "objectifdev": "",
+    "objectifdesign": "Le design de la landing page devait évoquer l'esprit de Noël avec des couleurs festives et des éléments graphiques inspirés de la saison. Il était essentiel de rendre les promotions visibles tout en offrant une navigation fluide et attractive pour les visiteurs.",
+    "resultat": "La landing page de Noël a capté l'attention des utilisateurs grâce à un design festif et élégant, ce qui a permis d'augmenter le nombre de clics et les ventes pendant la période des fêtes. Les visuels et les promotions bien mis en valeur ont contribué au succès de la campagne.",
+    "lienprojet": "https://www.cybertek.fr/",
+    "nomimageprojet": "soldes_ete_cyb",
+    "design": "tookis",
+    "code": "aucun",
+    "nomdespages": [""],
+    "typedeprojet": "Landing page",
+    "versionmobile": "non",
+    "typeicone": "visuel"
   }
-  
 ]
