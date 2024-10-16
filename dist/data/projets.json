@@ -1,7 +1,7 @@
 [
   {
     "id": 1,
-    "nomduprojet": "POKÉMON Opale",
+    "nomduprojet": "POKéMON Opale",
     "date": "2020 - 2024",
     "technos": ["figma", "vuejs", "github", "css3", "html5", "js"],
     "client": "Pokemonopale.fr",
@@ -13,7 +13,9 @@
     "lienprojet": "https://www.pokemonopale.fr",
     "nomimageprojet": "opale",
     "design": "tookis",
-    "code": "kek"
+    "code": "kek",
+    "nombredescreens": 1,
+    "nomdespages": [""]
   },
   {
     "id": 2,
@@ -29,7 +31,9 @@
     "lienprojet": "https://www.cybertek.fr",
     "nomimageprojet": "cybertek",
     "design": "tookis",
-    "code": "kek"
+    "code": "kek",
+    "nombredescreens": 4,
+    "nomdespages": ["Accueil", "Page de produit", "Liste des PC GAMER", "Un PC GAMER"] 
   },
   {
     "id": 3,
@@ -45,7 +49,9 @@
     "lienprojet": "https://www.grosbill.com",
     "nomimageprojet": "grosbill",
     "design": "tookis",
-    "code": "kek"
+    "code": "kek",
+    "nombredescreens": 1,
+    "nomdespages": [""]
   },
   {
     "id": 4,
@@ -61,7 +67,9 @@
     "lienprojet": "https://www.cybertek.fr/landing-pages/pc-gamer-serigraphie_the_witcher_3_wild_hunt.aspx",
     "nomimageprojet": "thewitcher",
     "design": "tookis",
-    "code": "kek"
+    "code": "kek",
+    "nombredescreens": 1,
+    "nomdespages": [""]
   },
   {
     "id": 5,
@@ -77,7 +85,9 @@
     "lienprojet": "https://www.cybertek.fr/landing-pages/pc-gamer-serigraphie_the_witcher_3_wild_hunt.aspx",
     "nomimageprojet": "assassin",
     "design": "kek",
-    "code": "kek"
+    "code": "kek",
+    "nombredescreens": 1,
+    "nomdespages": [""]
   },
   {
     "id": 6,
@@ -93,6 +103,99 @@
     "lienprojet": "https://www.cybertek.fr/landing-pages/pc-gamer-serigraphie-halo-infinite.aspx",
     "nomimageprojet": "haloinfinite",
     "design": "tookis",
-    "code": "kek"
+    "code": "kek",
+    "nombredescreens": 1,
+    "nomdespages": [""]
+  },
+  {
+    "id": 7,
+    "nomduprojet": "Cyberpunk 2077",
+    "date": "2023",
+    "technos": ["figma", "aspnet", "ajax", "css3", "html5", "js", "illustrator", "photoshop", "git", "visualstudiocode"],
+    "client": "Cybertek.fr",
+    "logo": "cybertek",
+    "texteclient": "J'ai dirigé la sélection visuelle et codé la landing page du PC sérigraphié 'Cyberpunk 2077'. Mon rôle comprenait la supervision de l'équipe graphique pour garantir un design en phase avec l'esthétique futuriste et dystopique du jeu. J'ai également programmé des fonctionnalités interactives pour offrir une expérience utilisateur immersive et captivante. Ce projet a permis de mettre en avant les caractéristiques techniques du produit tout en captant l'attention des fans de l'univers Cyberpunk.",
+    "objectifdev": "Mon objectif en tant que développeur front-end était de créer une landing page interactive et engageante pour promouvoir le PC sérigraphié 'Cyberpunk 2077'. J'ai programmé les fonctionnalités nécessaires pour une navigation fluide et une interface qui reflète le style unique du jeu, tout en mettant en avant les aspects techniques du produit.",
+    "objectifdesign": "En tant que designer, mon objectif était de diriger la création visuelle en étroite collaboration avec l'équipe graphique. Le design devait capturer l'esthétique cyberpunk et donner une impression d'immersion dans l'univers futuriste du jeu, tout en valorisant le produit.",
+    "resultat": "Le projet a abouti à une landing page immersive et visuellement impactante, combinant des éléments de design futuristes et des fonctionnalités interactives. La page a renforcé l'attrait du produit auprès des fans de Cyberpunk, tout en optimisant sa visibilité en ligne.",
+    "lienprojet": "https://www.cybertek.fr/landing-pages/pc-gamer-serigraphie_cyberpunk_2077.aspx",
+    "nomimageprojet": "cyberpunk",
+    "design": "tookis",
+    "code": "kek",
+    "nombredescreens": 1,
+    "nomdespages": [""]
+  },
+  {
+    "id": 8,
+    "nomduprojet": "DéoToon",
+    "date": "2023",
+    "technos": ["figma", "aspnet", "ajax", "css3", "html5", "js", "illustrator", "photoshop", "git", "visualstudiocode"],
+    "client": "Cybertek.fr",
+    "logo": "cybertek",
+    "texteclient": "DéoToon est un YouTuber talentueux spécialisé dans le dessin et l'illustration numérique. Il partage ses œuvres et ses tutoriels avec une communauté passionnée. Ce projet visait à créer une plateforme web pour mettre en avant son travail artistique et promouvoir ses vidéos.",
+    "objectifdev": "Mon objectif en tant que développeur front-end était de créer une landing page interactive et engageante pour promouvoir l'univers artistique de DéoToon. J'ai programmé les fonctionnalités nécessaires pour une navigation fluide et une interface qui mette en valeur ses œuvres, tout en assurant une expérience utilisateur agréable.",
+    "objectifdesign": "En tant que designer, mon objectif était de diriger la création visuelle du site en étroite collaboration avec l'équipe graphique. Le design devait capturer l'esprit créatif de DéoToon et refléter son style unique d'illustration, tout en offrant une présentation claire et attractive de ses contenus.",
+    "resultat": "Le projet a abouti à une landing page dynamique et visuellement attrayante, mettant en avant les œuvres de DéoToon avec des éléments de design créatifs et des fonctionnalités interactives. La page a renforcé la visibilité de son travail en ligne et a séduit ses fans par son approche artistique.",
+    "lienprojet": "https://www.cybertek.fr/landing-pages/deotoon.aspx",
+    "nomimageprojet": "deotoon",
+    "design": "tookis",
+    "code": "kek",
+    "nombredescreens": 1,
+    "nomdespages": [""]
+  },
+  {
+    "id": 9,
+    "nomduprojet": "Marquinhos",
+    "date": "2023",
+    "technos": ["figma", "aspnet", "ajax", "css3", "html5", "js", "illustrator", "photoshop", "git", "visualstudiocode"],
+    "client": "Cybertek.fr",
+    "logo": "cybertek",
+    "texteclient": "Ce projet consistait à créer une landing page pour un PC sérigraphié à l'effigie du joueur de football brésilien Marquinhos. L'objectif était de capturer l'essence du sport et d'offrir une expérience engageante pour les fans du joueur, tout en mettant en avant les caractéristiques techniques du produit.",
+    "objectifdev": "Mon objectif en tant que développeur front-end était de concevoir une landing page interactive pour promouvoir le PC sérigraphié 'Marquinhos'. J'ai programmé les fonctionnalités nécessaires pour une navigation fluide et une interface qui reflète l'univers du football, tout en mettant en avant les performances du produit.",
+    "objectifdesign": "En tant que designer, j'ai travaillé en étroite collaboration avec l'équipe graphique pour créer un design qui capture l'énergie du football. Le design devait refléter l'esprit de compétition et l'élégance de Marquinhos, tout en présentant le produit de manière attractive et dynamique.",
+    "resultat": "Le projet a permis de créer une landing page percutante et visuellement attrayante, combinant des éléments de design inspirés du monde du football et des fonctionnalités interactives. La page a renforcé l'attrait du produit auprès des fans de Marquinhos et a maximisé sa visibilité en ligne.",
+    "lienprojet": "https://www.cybertek.fr/landing-pages/marquinhos.aspx",
+    "nomimageprojet": "marquinhos",
+    "design": "tookis",
+    "code": "kek",
+    "nombredescreens": 1,
+    "nomdespages": [""]
+  },
+  {
+    "id": 10,
+    "nomduprojet": "WEDemain",
+    "date": "2021",
+    "technos": ["wordpress", "php", "css3", "html5", "js", "ajax", "illustrator", "photoshop", "git", "visualstudio"],
+    "client": "WEDemain",
+    "logo": "wedemain",
+    "texteclient": "Ce projet avait pour objectif de moderniser et d'améliorer le site web de WEDemain, un média dédié aux nouvelles initiatives en matière de développement durable, d'innovation sociale et de transition écologique. L'idée était de créer une plateforme engageante et intuitive pour attirer et fidéliser les lecteurs.",
+    "objectifdev": "Mon objectif en tant que développeur front-end était de refondre le site WEDemain en utilisant WordPress pour permettre une gestion simplifiée des contenus. J'ai intégré des fonctionnalités interactives pour améliorer l'expérience utilisateur, tout en veillant à l'optimisation des performances et à la compatibilité multi-supports.",
+    "objectifdesign": "J'ai collaboré avec l'équipe graphique pour élaborer une identité visuelle moderne et cohérente, en phase avec les valeurs de WEDemain. Le design devait refléter l'engagement du média pour les nouvelles solutions écologiques, tout en offrant une présentation claire et esthétique des contenus.",
+    "resultat": "Le projet a abouti à une refonte réussie du site WEDemain, combinant une interface moderne, une navigation optimisée et un design en phase avec l'identité de la marque. Le site a attiré un plus grand nombre de lecteurs et a renforcé sa visibilité en ligne grâce à une expérience utilisateur améliorée.",
+    "lienprojet": "https://www.wedemain.fr",
+    "nomimageprojet": "wedemain",
+    "design": "kek",
+    "code": "kek",
+    "nombredescreens": 1,
+    "nomdespages": [""]
+  },
+  {
+    "id": 11,
+    "nomduprojet": "Piment72",
+    "date": "2024",
+    "technos": ["wordpress", "php", "css3", "html5", "js", "ajax", "illustrator", "photoshop", "git", "visualstudio"],
+    "client": "Piment72",
+    "logo": "piment72",
+    "texteclient": "Le projet Piment72 visait à créer un site de vente en ligne pour une marque spécialisée dans les sauces pimentées artisanales. L'objectif était de développer une boutique en ligne moderne et attrayante, permettant aux clients de découvrir et d'acheter facilement les différents produits proposés.",
+    "objectifdev": "Mon objectif en tant que développeur front-end était de concevoir un site e-commerce performant avec WordPress et WooCommerce. J'ai veillé à intégrer des fonctionnalités interactives pour faciliter la navigation et l'achat en ligne, tout en optimisant la rapidité du site et la compatibilité sur différents appareils.",
+    "objectifdesign": "J'ai travaillé sur un design qui reflète l'identité piquante et artisanale de Piment72. Le design devait transmettre la passion pour les produits épicés et offrir une expérience visuelle captivante, tout en garantissant une présentation claire des produits.",
+    "resultat": "Le projet a permis de lancer un site e-commerce attractif et convivial, mettant en avant les produits de Piment72 avec une navigation intuitive et un design percutant. La boutique en ligne a augmenté la visibilité de la marque et facilité l'accès aux sauces pimentées pour les amateurs de saveurs épicées.",
+    "lienprojet": "https://www.piment72.fr",
+    "nomimageprojet": "piment72",
+    "design": "tookis",
+    "code": "kek",
+    "nombredescreens": 1,
+    "nomdespages": [""]
   }
+  
 ]

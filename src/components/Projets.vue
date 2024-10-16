@@ -1,11 +1,12 @@
 <template>  
   <section class="projets">
     <div class="div-projets-list" v-if="isProjectListVisible">
+      <h2 class="white-texte">Nos réalisations</h2>
       <ul class="projets-list">
         <li 
           v-for="project in projects" 
           :key="project.id" 
-          :class="[{ selected: project.id === selectedProjectId }, 'projets-list--item']"
+          :class="[{ selected: project.id === currentProject?.id }, 'projets-list--item']"
           @click="selectProject(project.id)"
         >
           <img :src="getImageForProject(project)" alt="Projet {{ project.nomduprojet }}" />
@@ -13,24 +14,17 @@
         </li>
       </ul>
     </div>
-    <div class="ctacloseprojet" @click="closeProjets"><div class="ctacloseprojettexte">></div></div>
+
+    <div class="ctacloseprojet" @click="closeProjets">
+      <img :src="image3" :alt="fermer" class="fermer-portfolio" />
+    </div>
 
     <div v-if="isProjectDetailsVisible && currentProject" id="projet-actuel">
       <article class="un-projet">
         <div class="deux-sections  deux-section--une">
-          <div class="un-projet--titre une-section une-section--violet  deux-section--une   deux-section--une-header    deux-section--premiere">
-            <h2>{{ currentProject.nomduprojet }}</h2>
+          <div class="une-section une-section--violet  deux-section--une  deux-section--deuxieme  deux-section--une-header">
+            <h2 class="nom-du-projet">{{ currentProject.nomduprojet }}</h2>
             <p class="annee">{{ currentProject.date }}</p>
-            <br>
-            <ul class="technos-list">
-              <li v-for="techno in currentProject.technos" :key="techno">
-                <img :src="getTechImage(techno)" :alt="techno" class="techno-image" />
-                <p>{{ techno }}</p>
-              </li>
-            </ul>
-          </div>
-          <div class="une-section une-section--jaune  deux-section--une  deux-section--deuxieme  deux-section--une-header">
-            <h2>Le site {{ currentProject.client }}</h2>
             <br>
             <div class="logotexte">
               <img :src="getLogo()" class="resultat-preview--mobile image-logo" :alt="'Logo du projet ' + currentProject.nomduprojet" />
@@ -38,6 +32,18 @@
             </div>
           </div>
         </div>
+        
+        <div class="un-projet--titre une-section une-section--jaune  deux-section--une   deux-section--une-header    deux-section--premiere">
+          <h2 class="titre-du-site">Le site {{ currentProject.client }}</h2>
+            <br>
+            <h2 class="technos-titre">Technos utilisées pour ce projet :</h2>
+            <ul class="technos-list">
+              <li v-for="techno in currentProject.technos" :key="techno">
+                <img :src="getTechImage(techno)" :alt="techno" class="techno-image" />
+                <p>{{ techno }}</p>
+              </li>
+            </ul>
+          </div>
 
         <div class="deux-sections">
           <div  :class="['une-section', 'objectif--'+currentProject.design]">
@@ -75,7 +81,7 @@
                 <div class="cta cta--jaune">Voir le projet en ligne</div>
               </a>
               <div class="image-mobile">
-                <img :src="imageprojetmobile" class="resultat-preview--mobile" :alt="'Projet ' + currentProject.nomduprojet" />
+                <img :src="currentMobileImage" class="resultat-preview--mobile" :alt="'Projet ' + currentProject.nomduprojet" />
               </div>
             </div>
 
@@ -88,7 +94,7 @@
                   v-for="n in currentProject.nombredescreens" 
                   :key="n" 
                   :src="getThumbnailImage(n - 1)" 
-                  class="miniature miniature--projet" 
+                  :class="['miniature', 'miniature--projet', { 'miniature-projet--selected': selectedThumbnailIndex === (n - 1) }]" 
                   :alt="'Miniature ' + currentProject.nomduprojet + ' - ' + n" 
                   @click="updateMainImage(n - 1)" 
                 />
@@ -117,6 +123,7 @@
 import axios from 'axios';
 import image1 from '@/assets/images/bd/kek1.svg';
 import image2 from '@/assets/images/bd/tookis-bd1.svg';
+import image3 from '@/assets/images/button.svg';
 
 export default {
   props: {
@@ -133,8 +140,10 @@ export default {
       isProjectDetailsVisible: false,
       currentMainImage: '',
       currentMobileImage: '',
+      selectedThumbnailIndex: 0,
       image1,
-      image2
+      image2,
+      image3
     }
   },
   watch: {
@@ -173,7 +182,16 @@ export default {
         this.currentProject = project;
         this.isProjectDetailsVisible = true;
         this.isProjectListVisible = true;
-        this.currentMainImage = this.getAdditionalImage(0);
+        this.currentMainImage = this.getAdditionalImage(0); // Par défaut, affiche la première image principale
+        this.currentMobileImage = this.getAdditionalImageMobile(0); // Par défaut, affiche la première image mobile
+        
+        // Faire défiler jusqu'à #projet-actuel
+        this.$nextTick(() => {
+          const projectElement = document.querySelector("#projet-actuel");
+          if (projectElement) {
+            projectElement.scrollIntoView({ behavior: "smooth" });
+          }
+        });
       }
     },
     closeProjets() {
@@ -209,6 +227,7 @@ export default {
     updateMainImage(index) {
       this.currentMainImage = this.getAdditionalImage(index);
       this.currentMobileImage = this.getAdditionalImageMobile(index);
+      this.selectedThumbnailIndex = index;
     },
   },
   mounted() {
@@ -243,10 +262,16 @@ export default {
 .miniature:hover {
   transform: scale(1.1);
 }
-
 .miniature--projet{
   border-radius: 20px;
   margin: 0 20px 20px 0;
+}
+
+.miniature-projet--selected {
+    transform: scale(1.1);
+    border: solid 5px;
+    opacity: 0.7;
+    border-color: #FDB925;
 }
 
     .div-projets-list{
@@ -318,16 +343,11 @@ export default {
 
     .technos-list li {
       text-align: center;
-      padding: 10px;
-      background: #75579b;
+      padding: 8px;
+      background: #FFFFFF;
       border-radius: 20px;
       width: calc(12% - 56px);
       transition: 0.3s;
-  }
-
-  
-  .technos-list li:hover {
-      background: #75579b55;
   }
 
 
@@ -343,7 +363,7 @@ export default {
     display: flex;
     flex-wrap: wrap;
     gap: 30px;
-    padding: 0px 20px;
+    padding: 0px 10px !important;
     max-width: 2000px;
     position: relative;
     width: 100%;
@@ -385,7 +405,9 @@ export default {
     font-size: 1.5em;
     font-weight: bold;
 }
-
+.nom-du-projet{
+  font-size: 2.5rem;
+}
 
     /* Firefox */
     .projets {
@@ -483,6 +505,63 @@ export default {
   .deux-section--une-header{
     width:100%;
   }
+.white-texte{
+  color:white;
+}
+
+  .div-projets-list{
+      padding: 20px;
+      border: solid 5px black;
+      background: #8b69ad;
+      border-radius: 30px 0 0 30px;
+      max-height: 640px;
+      overflow-y: scroll;
+    }
+    .projets-list li[data-v-c040f353] {
+        opacity: 1;
+    }
+    .projets-list{
+      border-top: none;
+    }
+
+
+
+    
+    /* WebKit (Chrome, Safari) */
+    .div-projets-list::-webkit-scrollbar {
+        width: 12px;
+        cursor: url('@/assets/images/cursor-hover.svg') 3 3, auto !important;
+        border-radius: 20px;
+        overflow: hidden;
+    }
+    
+
+    .div-projets-list::-webkit-scrollbar-thumb {
+        background-color: #8B69AD;
+        border: 3px solid #000000; /* Bordure noire autour du thumb */
+        cursor: url('@/assets/images/cursor-hover.svg') 3 3, auto !important;
+        border-radius: 20px;
+        overflow: hidden;
+    }
+
+    .div-projets-list::-webkit-scrollbar-track {
+        background-color: #8B69AD;
+        cursor: url('@/assets/images/cursor-hover.svg') 3 3, auto !important;
+        margin: 5px; /* Ajoute un espacement entre le track et les bords pour améliorer l'esthétique */
+        border-radius: 20px;
+        overflow: hidden;
+    }
+
+    .div-projets-list::-webkit-scrollbar-thumb:hover {
+        background-color: #8B69AD;
+        cursor: url('@/assets/images/cursor-hover.svg') 3 3, auto !important;
+        border-radius: 20px;
+        overflow: hidden;
+    }
+.projets-container{
+  border-radius: 30px;
+  overflow: hidden;
+}
 
 
   #projet-actuel{
@@ -491,32 +570,17 @@ export default {
   }
 
   .ctacloseprojet{
-    width: fit-content;
-      /* background: red; */
-      display: flex;
-      justify-content: center;
-      align-items: center;
-  }
-  .ctacloseprojettexte{
-    font-size: 5em;
-    font-weight: 700;
-    width: 100px;
-    height: 100px;
+    width: 70px;
     display: flex;
     justify-content: center;
     align-items: center;
-    border-radius: 100px;
-    background: #8b69ad;
-    color: white;
-    border: solid 5px black;
-    transform: rotate(-90deg);
-
-    position:fixed;
-
-    bottom: 50px;
-    right: 50px;
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
   }
-  
+  .fermer-portfolio{
+    width: 100%;
+  }
   .ctacloseprojet:after{
     content: '';
     font-size: 1.5em;
@@ -545,6 +609,14 @@ export default {
     .objectif-jl.objectif-nom--kek{
         display: none;
 
+    }
+    .titre-du-site{
+      width: fit-content;
+      border-bottom:solid 3px black;
+    }
+    .technos-titre{
+      font-size: 1.6em;
+      margin-bottom: 20px;
     }
   @keyframes apparition {
     0% {
@@ -595,6 +667,33 @@ export default {
     .content-objectif{
       flex-wrap: wrap;
     }
+    
+    .logotexte{
+      display: flex;
+      gap: 20px;
+      flex-direction: column;
+    }
+    .technos-list{
+      max-height: 270px;
+      overflow-y: scroll;
+    }
+
+
+    
+    
+
+    .div-projets-list{
+      padding: 20px 10px; 
+      margin-top: 20px;
+    }
+    .projets-list{
+      gap:10px;
+    }
+    .projets-list li{
+      width: calc(50% - 5px);
+    }
+
+
   }
 </style>
   

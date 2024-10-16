@@ -5,7 +5,7 @@
 
 
         <div class="item1  item  part-bloc  part-bloc--violet  part-bloc--1">
-            <h1 class="texte--white">Pour un projet qui claque&nbsp;!</h1>
+            <h1 class="texte--white  texte--white-h1">Pour un projet qui claque&nbsp;!</h1>
             <div class="cta--container pointer">
 
               
@@ -49,7 +49,7 @@
             <img :src="flecheArray[currentFlecheIndex]" class="fleche-portfolio fleche-portfolio--2" alt="Flêche">
             <img :src="keklunettes" class="lunette-protfolio-img" alt="Lunettes">
           </div>
-            <div class="cta--container pointer">
+            <div class="cta--container pointer  cta--container-portfolio">
                 <div class="cta cta--personnage cta--jaune">
                     Portfolio
                 </div>
@@ -282,7 +282,12 @@
         </div>
 
         <div class="item7  item    part-bloc  part-bloc--jaune   part-bloc--2">
-          © <span>{{ currentYear }}</span> - Tookek - Agence web - tous droits réservés
+          <div class="footer-part">
+            © {{ currentYear }} - Tookek - Agence web, 
+          </div>
+          <div class="footer-part">
+            tous droits réservés
+          </div>
         </div>
       </div>
     </article>
@@ -721,6 +726,12 @@ export default {
 .slide:hover  img{
   transform: scale(1.1);
 }
+.item7{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 5px;
+}
 
 
 
@@ -781,6 +792,23 @@ export default {
     left: 120px;
     transform: rotate(180deg);
   }
-
+  .texte--white-h1{
+    margin-bottom:20px;
+  }
+  
+  .item7{
+    flex-direction: column;
+  }
+  .fleche-portfolio--2{
+    position: relative;
+    margin: auto;
+    left: calc(50% - 20px);
+    right: auto;
+    top:40px;
+    margin-bottom:-40px;
+  }
+  .cta--container-portfolio{
+    top: -30px;
+  }
 }
 </style>
