@@ -72,7 +72,7 @@
           </div>
         </div>
 
-        <div class="une-section une-section--violet">
+        <div class="une-section une-section--violet  une-section--resultat">
           <h2>Résultat {{ currentProject.nomduprojet }}</h2>
           <div class="resultat-container">
             <div class="resultat-part resultat-part--texte">
@@ -80,6 +80,24 @@
               <a class="cta--container pointer" :href="currentProject.lienprojet" target="_blank">
                 <div class="cta cta--jaune">Voir le projet en ligne</div>
               </a>
+              
+
+
+              <div v-for="n in currentProject.nombredescreens" :key="n" class="miniatures-container  mini--mobile">
+                
+                <div @click="updateMainImage(n - 1)" class="mini-page" :class="['mini-page', { 'mini-projet--selected': selectedThumbnailIndex === (n - 1) }]"  >
+                    <img 
+                      :src="getThumbnailImage(n - 1)" 
+                      :class="['miniature', 'miniature--projet', { 'miniature-projet--selected': selectedThumbnailIndex === (n - 1) }]" 
+                      :alt="'Miniature ' + currentProject.nomduprojet + ' - ' + n" 
+                      @click="updateMainImage(n - 1)" 
+                    />
+                    <p v-if="currentProject.nomdespages && currentProject.nomdespages[n - 1]" class="miniature-title">
+                      {{ currentProject.nomdespages[n - 1] }}
+                    </p>
+                  </div>
+                </div>
+
               <div class="image-mobile">
                 <img :src="currentMobileImage" class="resultat-preview--mobile" :alt="'Projet ' + currentProject.nomduprojet" />
               </div>
@@ -89,15 +107,20 @@
 
             <div class="resultat-part resultat-part--image-container">
 
-              <div v-if="currentProject.nombredescreens > 1" class="miniatures-container">
-                <img 
-                  v-for="n in currentProject.nombredescreens" 
-                  :key="n" 
-                  :src="getThumbnailImage(n - 1)" 
-                  :class="['miniature', 'miniature--projet', { 'miniature-projet--selected': selectedThumbnailIndex === (n - 1) }]" 
-                  :alt="'Miniature ' + currentProject.nomduprojet + ' - ' + n" 
-                  @click="updateMainImage(n - 1)" 
-                />
+              <div v-if="currentProject.nombredescreens > 1" class="miniatures-container miniatures-container--top">
+                <div v-for="n in currentProject.nombredescreens" :key="n" class="miniature-wrapper">
+                  <div @click="updateMainImage(n - 1)" class="mini-page" :class="['mini-page', { 'mini-projet--selected': selectedThumbnailIndex === (n - 1) }]"  >
+                    <img 
+                      :src="getThumbnailImage(n - 1)" 
+                      :class="['miniature', 'miniature--projet', { 'miniature-projet--selected': selectedThumbnailIndex === (n - 1) }]" 
+                      :alt="'Miniature ' + currentProject.nomduprojet + ' - ' + n" 
+                    />
+                    <p v-if="currentProject.nomdespages && currentProject.nomdespages[n - 1]" class="miniature-title">
+                      {{ currentProject.nomdespages[n - 1] }}
+                    </p>
+                  </div>
+                  
+                </div>
               </div>
               <div class="resultat-part--image">
                 
@@ -260,18 +283,25 @@ export default {
 }
 
 .miniature:hover {
-  transform: scale(1.1);
+  transform: scale(1.05);
 }
 .miniature--projet{
   border-radius: 20px;
-  margin: 0 20px 20px 0;
 }
 
 .miniature-projet--selected {
-    transform: scale(1.1);
-    border: solid 5px;
-    opacity: 0.7;
-    border-color: #FDB925;
+    transform: scale(1.05);
+}
+
+.mini-projet{
+  display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.5rem;
+}
+.mini-projet--selected {
+    transform: scale(1.05);
 }
 
     .div-projets-list{
@@ -470,6 +500,7 @@ export default {
     color: #FFFFFF;
   }
 
+
   .logotexte{
     display: flex;
     gap: 20px;
@@ -524,6 +555,9 @@ export default {
       border-top: none;
     }
 
+    .mini--mobile{
+      display:none;
+    }
 
 
     
@@ -577,6 +611,7 @@ export default {
     position: fixed;
     bottom: 20px;
     right: 20px;
+    z-index: 999;
   }
   .fermer-portfolio{
     width: 100%;
@@ -632,7 +667,26 @@ export default {
     }
   }
 
-    
+  @media (min-width: 1650px){
+    .mini-page.mini-page{
+      position: relative;
+      overflow: hidden;
+      transform: scale(1) !important;
+      border-radius: 20px;
+      border:solid 2px #cd9828;
+    }
+    .miniature-title{
+      position: absolute; 
+      bottom: 0px;
+      left: 0px;
+      background-color: black;
+      width:100%;
+      padding:10px;
+    }
+    .mini-projet--selected .miniature-title{
+      background-color: #472a72;
+    }
+  }
   @media (max-width: 1650px) {
     .projets-list{
       flex-wrap: wrap;
@@ -642,6 +696,51 @@ export default {
     }
     .technos-list li{
       width: calc(16% - 8px);
+    }
+    
+    .miniature{
+      width: calc(33% - 33px);
+      margin: 0;
+    }
+    .miniatures-container{
+      gap: 20px;
+      margin-top: 20px;
+    }
+    .miniatures-container--top{
+      border-top: solid 3px black;
+      padding-top: 30px;
+      top:-30px; 
+      position: relative;
+    }
+    .image-mobile,
+    .resultat-part--image{
+        width: calc(100% + 40px);
+        border-radius: 20px;
+        left: -20px;
+        position: relative;
+    }
+    .miniatures-container{
+      align-items: center;
+    }
+    .mini-page{
+        display: flex;
+        align-items: center;
+        gap: 20px;
+        border-radius: 20px;
+        background: #472a72;
+    }
+    
+    .mini-projet--selected {
+        transform: scale(1.05);
+        border: solid 5px;
+        border-color: #FDB925;
+    }
+    .objectif--tookis,
+    .objectif--kek{
+        margin-bottom:0;
+    }
+    .une-section--resultat{
+      margin-top: 30px;
     }
   }
 
@@ -659,9 +758,7 @@ export default {
     .resultat-part{
       width: 100%;
     }
-    .image-mobile,
     .resultat-part--image{
-      width:100%;
       border-radius: 20px;
     }
     .content-objectif{
@@ -674,10 +771,18 @@ export default {
       flex-direction: column;
     }
     .technos-list{
-      max-height: 270px;
-      overflow-y: scroll;
+        max-height: 310px;
+        overflow-y: scroll;
+        padding: 20px;
+        border-radius: 20px;
+        background: #dc9a09;
+        border: 3px black solid;
     }
 
+
+    .mini--mobile{
+      display:flex;
+    }
 
     
     

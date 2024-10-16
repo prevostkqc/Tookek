@@ -480,6 +480,12 @@ export default {
   closeProjets() {
     this.showProjets = false;
     this.selectedProjectId = null; // Réinitialise l'ID du projet sélectionné
+    this.$nextTick(() => {
+    const projetsElement = document.querySelector("#projets");
+    if (projetsElement) {
+      projetsElement.scrollIntoView({ behavior: "smooth" });
+    }
+  });
   },
     getImageForProject(project) {
       return `/images/preview-projets/${project.nomimageprojet}-p.jpg`; // Générer le chemin de l'image
