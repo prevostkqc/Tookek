@@ -93,7 +93,7 @@
       max-width:1100px;
       position: relative;
       display: flex;
-      padding: 20px 20px 20px 60px;
+      padding: 20px 60px 20px 20px;
       outline: 3px solid #000000;
     }
     

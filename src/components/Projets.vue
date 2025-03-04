@@ -38,7 +38,7 @@
         <div class="un-projet--titre une-section une-section--jaune  deux-section--une   deux-section--une-header    deux-section--premiere">
           <h2 class="titre-du-site">Le site {{ currentProject.client }}</h2>
             <br>
-            <h2 class="technos-titre">Technos utilisées pour ce projet :</h2>
+            <p class="technos-titre">Technos utilisées pour ce projet :</p>
             <ul class="technos-list">
               <li v-for="techno in currentProject.technos" :key="techno">
                 <img :src="getTechImage(techno)" :alt="techno" class="techno-image" />

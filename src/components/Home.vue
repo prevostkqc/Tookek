@@ -5,7 +5,14 @@
 
 
         <div class="item1  item  part-bloc  part-bloc--violet  part-bloc--1">
-            <h1 class="texte--white  texte--white-h1">Pour un projet qui claque&nbsp;!</h1>
+          <h1 class="texte--white texte--white-h1">
+              Pour un projet qui 
+              <span class="word-wrapper">
+                <transition name="word-slide">
+                  <span class="home_titre--projet" :key="currentWord">{{ currentWord }}</span>
+                </transition>
+              </span>
+            </h1>
             <div class="cta--container pointer">
 
               
@@ -376,6 +383,9 @@ export default {
         fleche19,
       ],
 
+      wordsList: ["claque !", "cartonne !", "brille !", "étonne !", "décoiffe !", "pulse !", "déchire !", "rayonne !", "explose !", "détonne !", "éclate !", "dépote !"],
+      currentWordIndex: 0,
+      currentWord: "claque !",
       showProjets: false,
       currentSlide: 0,
       isTransitioning: true,
@@ -400,6 +410,7 @@ export default {
     this.startFlecheAnimation();
     this.loadProjects();
     document.addEventListener('visibilitychange', this.handleVisibilityChange);
+    this.startWordRotation();
   },
   methods: {
     async loadProjects() {
@@ -410,12 +421,16 @@ export default {
         console.error('Erreur lors du chargement des projets:', error);
       }
     },
+    startWordRotation() {
+      setInterval(() => {
+        this.currentWordIndex = (this.currentWordIndex + 1) % this.wordsList.length;
+        this.currentWord = this.wordsList[this.currentWordIndex];
+      }, 2500);
+    }, 
     handleVisibilityChange() {
       if (document.visibilityState === 'hidden') {
-        // La page est cachée, on stoppe le carrousel
         clearInterval(this.slideInterval);
       } else if (document.visibilityState === 'visible') {
-        // La page redevient visible, on relance le carrousel
         this.startSlider();
       }
     },
@@ -526,6 +541,52 @@ export default {
   width: 100%;
   padding: 20px;
 }
+.home_titre--projet{
+  color: #ffffff;
+  text-transform: uppercase;
+  position: relative;
+  top: 15px;
+}
+
+.word-wrapper {
+  display: inline-block;
+  position: relative;
+  overflow: hidden;
+  height: 100px;
+  width: 100%;
+}
+
+.home_titre--projet {
+  display: inline-block;
+  position: absolute;
+  width: 100%;
+  text-align: center;
+  color: white;
+  text-transform: uppercase;
+  text-align: left;
+}
+
+/* Animation de sortie */
+.word-slide-leave-active {
+  transition: transform 0.5s ease-in-out, opacity 0.5s ease-in-out;
+}
+
+.word-slide-leave-to {
+  transform: translateY(100%);
+  opacity: 0;
+}
+
+/* Animation d'entrée */
+.word-slide-enter-active {
+  transition: transform 0.5s ease-in-out, opacity 0.5s ease-in-out;
+}
+
+.word-slide-enter-from {
+  transform: translateY(-100%);
+  opacity: 0;
+}
+
+
 
 /* LISTE ITEMS */
 .item1 {
