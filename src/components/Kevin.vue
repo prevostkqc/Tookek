@@ -6,9 +6,11 @@
         <div class="container-bio">
             <div class="container-bio--texte">
                 <h2>{{ title }}</h2>
-                Fort de plus de 10 ans d'expérience en développement web, je suis un expert en création et optimisation de solutions numériques. 
-                <br><br>Ancien responsable de la Cellule Créative chez Cybertek, j'excelle dans la gestion d'équipe, l'innovation et la collaboration, menant des projets dont je suis fier à leur fin. 
-                <br><br>Passionné par le multimédia et les nouvelles technologies, je suis constamment à la recherche de nouveaux défis.
+                Fort d’une expérience de 15 ans en développement web, j’ai piloté de nombreux projets alliant design visuel et optimisation de l’expérience utilisateur.
+                <br><br>Expert en conception et amélioration de solutions numériques, j’aborde chaque projet avec exigence et ambition, alliant créativité et performance.
+                <br><br>Ancien responsable d’une équipe créative réunissant les experts en webdesign, UI-UX design, motion design, graphisme, intégration et développement front-end, j’excelle dans la gestion de projet, l’innovation et la collaboration, menant chaque mission avec rigueur et efficacité.
+                <br><br>Mon approche repose sur une synergie entre créativité et technologie, favorisant un environnement où l'innovation sert des objectifs concrets.
+                <br><br>Passionné par le multimédia et les nouvelles technologies, je suis toujours à la recherche de nouveaux défis à relever.
             </div>
             <div class="cta-container--pop">
               <a href="https://kevinprevost.fr/" target="_blank"  class="cta--container pointer">
